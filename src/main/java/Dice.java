@@ -1,13 +1,12 @@
 //Dice koden er taget fra CDIO1 opgaven.
 
-public class Dice
-{
+public class Dice {
     private final int MAX = 6; //Maximum værdi
 
     private int faceValue; //nuværende værdi
 
     //Konstruktør
-    public dice() {
+    public Dice() {
         faceValue = 1;
     }
 

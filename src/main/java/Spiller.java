@@ -3,7 +3,7 @@ public class Spiller {
     private int konto;
 
     //Konstruktør
-    public spiller() {
+    public Spiller() {
         konto = Logik.startKonto;
     }
 
