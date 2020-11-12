@@ -13,6 +13,9 @@ public class DiceTest {
         assertEquals(Dice.class, d1.getClass());
     }
 
+
+    /** diceIsRandom testen skal teste hvorledes metoden roll() i klassen Dice er tilfældig,
+     * når den skal slå et tal fra 1-6 */
     @org.junit.Test
     public void diceIsRandom() {
         int diceRoll;
