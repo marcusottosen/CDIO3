@@ -1,9 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DiceTest {
-    public static void main(String[] args) {
 
-    }
 
     /** Test af JUnit for at teste at det er sat korrekt op.
      * Her testes der blot om der er en konstruktør i Dice klassen */
@@ -32,7 +30,8 @@ public class DiceTest {
             }
         }
 
-        //Vi tester om terningen slår 1. 16.666 gange, med 1% afvigelse
+        //Vi tester om terningen slår 1. 16.666 gange, med 1% afvigelse.
+        //Vi tester om den afviger mere end 1% fra det forventede antal. Gør den, fejler testen.
         if (diceCount < 16500 || diceCount > 16832) {
             fail("Terningen er ikke tilfældig, da den slog 1. færre eller flere gange end forventet");
         }
