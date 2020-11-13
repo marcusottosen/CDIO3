@@ -1,3 +1,4 @@
+import com.sun.xml.internal.bind.v2.TODO;
 import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -8,7 +9,7 @@ import java.util.Random;
 
 public class Main {
     private static int antalSpillere;
-
+    private static GUI_Car UFO;
 
 
     public static void main(String[] args) {
@@ -42,6 +43,8 @@ public class Main {
 
 
         int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
+
+        //Loop som spillet køres i
         outer : while (!falit) {
             for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
                 if (player[i].getBalance() <= 0) {
@@ -67,16 +70,22 @@ public class Main {
                     dice = ((int)(Math.random() * 6) + 1);  // Finder en værdi mellem 1-6
                     gui.setDie(dice);                       // Viser én terning
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
+                    System.out.println(location[i]);
 
-                    if (location[i] <= 24) {}   //Tjekker hvis bilen har været pladen rundt
+                    if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
+                    else if (location[i]==23){
+                        location[i]=0;
+                    }
                     else{
                         location[i] = location[i]-24;
                     }
-                        //Rykker bilerne
+
                         gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
 
 
-
+                    //---------------------------------------------------------------------------------------
+                    //Køb af felter samt betaling til andre spillere
+                    //---------------------------------------------------------------------------------------
 
 
                     player[i].setBalance(player[i].getBalance() + 1);

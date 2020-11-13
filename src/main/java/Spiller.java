@@ -1,4 +1,9 @@
 import gui_main.GUI;
+import gui_fields.*;
+import gui_fields.GUI_Player;
+
+import java.awt.*;
+
 
 public class Spiller {
     public static String[] spillerNavne;                       //Array af spillernes navne
@@ -11,6 +16,7 @@ public class Spiller {
         konto = Logik.startKonto;
     }
 
+
     public int getkonto() {
         return konto;
     }
@@ -22,22 +28,23 @@ public class Spiller {
             konto = konto + a;
     }
 
-    public static int antalSpillere(GUI gui){                   //Finder antal spillere
+    public static int antalSpillere(GUI gui) {                   //Finder antal spillere
         String antalSpillerInput = gui.getUserSelection(
                 "Vælg antal spillere",
                 "1", "2", "3", "4"
         );
-        antalSpillere=Integer.parseInt(antalSpillerInput);      // Laver string input om til int
+        antalSpillere = Integer.parseInt(antalSpillerInput);      // Laver string input om til int
         return antalSpillere;
     }
 
     public static String[] setNames(GUI gui) {                  //Finder spillernes navne og sætter dem ind i arrayet
         spillerNavne = new String[antalSpillere];               //Sætter arrayet til antallet af spillere
         for (int i = 0; i < antalSpillere; i++) {
-            String navnInput = gui.getUserString("Indtast navn på spiller " + i+1);
+            String navnInput = gui.getUserString("Indtast navn på spiller " + i + 1);
             spillerNavne[i] = navnInput;
+
         }
         return spillerNavne;
     }
-
 }
+
