@@ -14,6 +14,8 @@ public class Main {
     public static void main(String[] args) {
         String kastButton = "";
         boolean falit = false;
+        int[] spillerLocation;
+        int dice = 0;
 
         GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
 
@@ -39,7 +41,7 @@ public class Main {
 
 
 
-
+        int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
         outer : while (!falit) {
             for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
                 if (player[i].getBalance() <= 0) {
@@ -56,15 +58,29 @@ public class Main {
                     );
                     kastButton = "";
 
-                    //Rykker bilerne
-                    gui.getFields()[4].setCar(player[i], true);
-                    gui.getFields()[5].setCar(player[i], true);
 
-                    gui.getFields()[4].setCar(player[i], false);
+                    //---------------------------------------------------------------------------------------
+                    //Kaster terningen og rykker bilerne rundt på pladen
+                    //---------------------------------------------------------------------------------------
+                    gui.getFields()[location[i]].setCar(player[i], false);          //Fjerner den tidligere bil
+
+                    dice = ((int)(Math.random() * 6) + 1);  // Finder en værdi mellem 1-6
+                    gui.setDie(dice);                       // Viser én terning
+                    location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
+
+                    if (location[i] <= 24) {}   //Tjekker hvis bilen har været pladen rundt
+                    else{
+                        location[i] = location[i]-24;
+                    }
+                        //Rykker bilerne
+                        gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
+
+
+
 
 
                     player[i].setBalance(player[i].getBalance() + 1);
-                    gui.setDie((int) (Math.random() * 6) + 1); // Viser én terning med værdien 6
+
                 }
             }
         }
