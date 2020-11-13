@@ -1,3 +1,4 @@
+import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 import gui_fields.*;
@@ -6,65 +7,33 @@ import java.awt.*;
 import java.util.Random;
 
 public class Main {
-    static GUI_Field[] gameBoard = {
-            new GUI_Start("START", "Få 2 penge", "Du passerer nu start", Color.white, Color.black),
-            new GUI_Street("Burgerbar", "1", "en bar", "1", Color.orange, Color.BLACK),
-            new GUI_Street("pizzaria", "1", "en bar", "1", Color.orange, Color.BLACK),
-            new GUI_Chance(),
-            new GUI_Street("Slikbutikken", "1", "en bar", "1", Color.blue, Color.BLACK),
-            new GUI_Street("Iskiosken", "1", "en bar", "1", Color.blue, Color.BLACK),
-
-            new GUI_Shipping(),
-
-            new GUI_Street(),
-            new GUI_Street(),
-            new GUI_Chance(),
-            new GUI_Street(),
-            new GUI_Street(),
-
-            new GUI_Shipping(),
-
-            new GUI_Street(),
-            new GUI_Street(),
-            new GUI_Chance(),
-            new GUI_Street(),
-            new GUI_Street(),
-
-            new GUI_Jail(),
-
-            new GUI_Street(),
-            new GUI_Street(),
-            new GUI_Chance(),
-            new GUI_Street(),
-            new GUI_Street(),
-    };
+    private static int antalSpillere;
 
     public static void main(String[] args) {
-        GUI gui = new GUI(gameBoard, Color.WHITE);
-        //GUI_Field field = gui.getFields()[0]; //sætter start placering
+        GUI gui = new GUI(Felter.gameBoard, Color.WHITE);
 
-        //String p1Input = gui.getUserString("Skriv dit navn");
-        //String p2Input = gui.getUserString("Skriv dit navn");
+        //Spørger brugeren om hvor mange spillere der er
+        Spiller.antalSpillere(gui);{
+            antalSpillere = Spiller.antalSpillere;
+        }
 
-        String antalSpillerInput = gui.getUserString("Skriv dit navn");
-        int antalSpillere = Integer.parseInt(antalSpillerInput);    // Laver string input om til int
-        GUI_Player player[] = new GUI_Player[antalSpillere];        // Opretter array svarende til antal spillere
+        //Spørger om spillernes navne og sætter dem i et array spillerNavne[]
+        Spiller.setNames(gui);
+
+
+        // Opretter array af spillerobjeckter svarende til antal spillere
+        GUI_Player[] player = new GUI_Player[antalSpillere];
 
         for (int i = 0; i < antalSpillere; i++) {
-            player[i] = new GUI_Player("Stephen"+i, 20);
-            player[i].setName("hello");
-            player[i].setBalance(20);
+            player[i] = new GUI_Player(Spiller.spillerNavne[i], 20);
             gui.addPlayer(player[i]);
             GUI_Field field = gui.getFields()[0];
             field.setCar(player[i], true);
         }
 
 
-
-
-
         String chosenButton = "";
-        while(player[0].getBalance()<30) {
+        while (player[0].getBalance() < 30) {
             if (chosenButton != "kast terning!") {
                 chosenButton = gui.getUserButtonPressed(
                         " ",
@@ -72,17 +41,23 @@ public class Main {
                 );
                 chosenButton = "";
 
-                player[0].setBalance(player[0].getBalance()+1);
-                gui.setDie((int)(Math.random()*6)+1); // Viser én terning med værdien 6
-
+                player[0].setBalance(player[0].getBalance() + 1);
+                gui.setDie((int) (Math.random() * 6) + 1); // Viser én terning med værdien 6
 
 
             }
         }
 
 
-   }
+    }
 }
+
+
+//GUI_Field field = gui.getFields()[0]; //sætter start placering
+
+//String p1Input = gui.getUserString("Skriv dit navn");
+//String p2Input = gui.getUserString("Skriv dit navn");
+
 
 
 

@@ -1,6 +1,10 @@
+import gui_main.GUI;
 
 public class Spiller {
+    public static String[] spillerNavne;                       //Array af spillernes navne
     private int konto;
+    public static int antalSpillere;
+
 
     //Konstruktør
     public Spiller() {
@@ -17,4 +21,23 @@ public class Spiller {
         else
             konto = konto + a;
     }
+
+    public static int antalSpillere(GUI gui){                   //Finder antal spillere
+        String antalSpillerInput = gui.getUserSelection(
+                "Vælg antal spillere",
+                "1", "2", "3", "4"
+        );
+        antalSpillere=Integer.parseInt(antalSpillerInput);      // Laver string input om til int
+        return antalSpillere;
+    }
+
+    public static String[] setNames(GUI gui) {                  //Finder spillernes navne og sætter dem ind i arrayet
+        spillerNavne = new String[antalSpillere];               //Sætter arrayet til antallet af spillere
+        for (int i = 0; i < antalSpillere; i++) {
+            String navnInput = gui.getUserString("Indtast navn på spiller " + i);
+            spillerNavne[i] = navnInput;
+        }
+        return spillerNavne;
+    }
+
 }
