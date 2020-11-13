@@ -40,22 +40,32 @@ public class Main {
 
 
 
-        while (!falit) {
+        outer : while (!falit) {
             for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
-                if (player[i].getBalance() > 0)
+                if (player[i].getBalance() <= 0) {
                     falit = true;
+                    break outer;    //Hopper ud af while loopet
+                }
             }
 
-            if (kastButton != "kast terning!") {
-                kastButton = gui.getUserButtonPressed(    //Knap til kast af terning
-                        " ",
-                        "Kast terningen!"
-                );
-                kastButton = "";
+            for (int i = 0; i < player.length; i++) {       //Skifter mellem spillernes tur
+                if (kastButton != "kast terning!") {
+                    kastButton = gui.getUserButtonPressed(    //Knap til kast af terning
+                            " ",
+                            "Kast terningen!"
+                    );
+                    kastButton = "";
 
-                player[0].setBalance(player[0].getBalance() + 1);
-                gui.setDie((int) (Math.random() * 6) + 1); // Viser én terning med værdien 6
+                    //Rykker bilerne
+                    gui.getFields()[4].setCar(player[i], true);
+                    gui.getFields()[5].setCar(player[i], true);
 
+                    gui.getFields()[4].setCar(player[i], false);
+
+
+                    player[i].setBalance(player[i].getBalance() + 1);
+                    gui.setDie((int) (Math.random() * 6) + 1); // Viser én terning med værdien 6
+                }
             }
         }
 
@@ -67,8 +77,6 @@ public class Main {
 
 //GUI_Field field = gui.getFields()[0]; //sætter start placering
 
-//String p1Input = gui.getUserString("Skriv dit navn");
-//String p2Input = gui.getUserString("Skriv dit navn");
 
 
 
