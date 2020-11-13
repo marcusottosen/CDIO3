@@ -7,7 +7,6 @@ public class RunChanceKort {
 
     public static void kort1() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
-        System.out.println("Du fik chancekort 1");
 
     }
     public static void kort2() {

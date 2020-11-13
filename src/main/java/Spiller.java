@@ -6,6 +6,7 @@ import java.awt.*;
 
 
 public class Spiller {
+
     public static String[] spillerNavne;                       //Array af spillernes navne
     private int konto;
     public static int antalSpillere;
@@ -27,6 +28,7 @@ public class Spiller {
         else
             konto = konto + a;
     }
+
 
     public static int antalSpillere(GUI gui) {                   //Finder antal spillere
         String antalSpillerInput = gui.getUserSelection(

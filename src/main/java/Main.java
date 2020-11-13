@@ -27,10 +27,13 @@ public class Main {
 
         //Spørger om spillernes navne og sætter dem i et array spillerNavne[]
         Spiller.setNames(gui);
+        //RunChanceKort.kort1(gui);
 
 
         // Opretter array af spillerobjeckter svarende til antal spillere
         GUI_Player[] player = new GUI_Player[antalSpillere];
+
+
 
         // Tilføjer navn og balance til spillerobjecterne og viser dem visuelt på pladen.
         for (int i = 0; i < antalSpillere; i++) {
@@ -40,9 +43,23 @@ public class Main {
             field.setCar(player[i], true);
         }
 
-
-
         int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
+
+
+
+
+        GUI_Field field = gui.getFields()[1];
+        GUI_Ownable ownable = (GUI_Ownable) field;
+        GUI_Street street = (GUI_Street) field;
+
+        street.setHouses(2);
+        ownable.setOwnerName("Albert");
+        ownable.setBorder(Color.GREEN);
+        // https://github.com/diplomit-dtu/MatadorGUIGuide/tree/3.1.7#import
+
+
+
+
 
         //Loop som spillet køres i
         outer : while (!falit) {
@@ -75,13 +92,37 @@ public class Main {
                     if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
                     else if (location[i]==23){
                         location[i]=0;
+                        player[i].setBalance(player[i].getBalance()+2);     //Giver 2 penge over start
                     }
                     else{
                         location[i] = location[i]-24;
+                        player[i].setBalance(player[i].getBalance()+2);     //Giver 2 penge over start
                     }
 
                         gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
 
+
+                    //Felter.gameBoard.setHouses(1);
+
+
+
+
+                    //---------------------------------------------------------------------------------------
+                    //Når en spiller lander på et chancekort
+                    //---------------------------------------------------------------------------------------
+                    if(     location[i] == 3 ||
+                            location[i] == 9 ||
+                            location[i] == 15||
+                            location[i] == 21
+                    ){
+                        // Der findes et chancekort
+
+
+                        new GUI_Chance("Title", "subText", "description", Color.red, Color.black);
+                        gui.setChanceCard("hello");
+                        gui.displayChanceCard();
+
+                    }
 
                     //---------------------------------------------------------------------------------------
                     //Køb af felter samt betaling til andre spillere
