@@ -1,7 +1,4 @@
 import gui_fields.*;
-import gui_main.GUI;
-
-
 import java.awt.*;
 
 public class Felter {
@@ -38,32 +35,4 @@ public class Felter {
             new GUI_Street("Vandlandet", "4", "en bar", "1", Color.gray, Color.BLACK),
             new GUI_Street("Strandpromenaden", "4", "en bar", "1", Color.gray, Color.BLACK),
     };
-
-
-    //Tjekker hvorvidt feltet er en vej (købbar)
-    public static boolean isStreet(int a){
-        if ((gameBoard[a].getSubText().equals("1"))  || (gameBoard[a].getSubText().equals("2")) || (gameBoard[a].getSubText().equals("3")) || (gameBoard[a].getSubText().equals("4"))){
-            return true;
-        }
-        else return false;
-    }
-
-    /*public static boolean isOwned(){       // hvis vej er ejet retuner true.
-        boolean owned = false;
-        for (int j = 0; j < Main.player.length; j++) {
-            if (Main.ownable.getOwnerName() == Main.player[j].getName()) {
-                owned = true;
-            } else {
-                owned = false;
-            }
-        }
-        if (owned)
-            return true;
-        else
-            return false;
-
-    }*/
-
-
-
 }

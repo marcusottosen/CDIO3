@@ -10,15 +10,16 @@ import java.util.Random;
 public class Main {
     private static int antalSpillere;
     private static GUI_Car UFO;
+    //public static GUI_Player[] player;
+    //public static GUI_Ownable ownable;
 
-    public GUI_Player[] player = new GUI_Player[0];
-    public int[] location = new int[0];
-    public GUI gui = new GUI(Felter.gameBoard, Color.WHITE);
-    public GUI_Field field = gui.getFields()[0];
-    public GUI_Ownable ownable = (GUI_Ownable) field;
-    public boolean falit = false;
-
-
+/*
+      GUI gui = new GUI();
+      GUI_Player[] player = new GUI_Player[0];
+     int[] location = new int[0];
+      GUI_Field field = gui.getFields()[0];
+      GUI_Ownable ownable = (GUI_Ownable) field;
+*/
 
     public static void main(String[] args) {
         String kastButton = "";
@@ -28,6 +29,11 @@ public class Main {
 
         GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
 
+         boolean falit = false;
+
+
+
+        //Felter.startGame();
         //Spørger brugeren om hvor mange spillere der er
         Spiller.antalSpillere(gui);{
             antalSpillere = Spiller.antalSpillere;
@@ -88,6 +94,10 @@ public class Main {
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
                     System.out.println(location[i]);
 
+
+                    //Logik.boardLoop(player, location, location[i]);
+
+
                     if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
                     else if (location[i]==23){
                         location[i]=0;
@@ -130,7 +140,7 @@ public class Main {
                     GUI_Field field = gui.getFields()[location[i]];
 
 
-                    if (Felter.isStreet(location[i])) {                         //Tjekker om feltet er en vej
+                    if (FeltLogik.isStreet(location[i])) {                       //Tjekker om feltet er en vej
                         System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
@@ -139,7 +149,7 @@ public class Main {
                         if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren.
                             System.out.println("Du ejer dette felt");
                         }
-                        else if(isOwned()){
+                        else if(FeltLogik.isOwned(player,ownable.getOwnerName())){
                             System.out.println("Dette felt er allerede købt!");
                         }
 
@@ -150,12 +160,6 @@ public class Main {
                             ownable.setBorder(player[i].getPrimaryColor());
                             player[i].setBalance(player[i].getBalance()-2);
                         }
-
-
-
-
-
-
                         player[i].setBalance(player[i].getBalance() + 1);
                     }
                     else{
@@ -165,26 +169,4 @@ public class Main {
             }
         }
     }
-
-    //Forsøgt at sætte dette ind i felter.java. Men det kræver at owned, player og ownable er public static..
-    //Hvis de er static, skal GUI gui også være static, hvilket gør at spillet ikke virker..
-    public boolean isOwned(){       // hvis vej er ejet, retuner true
-        boolean owned = false;
-        for (int j = 0; j < player.length; j++) {
-            if (ownable.getOwnerName() == player[j].getName()) {
-                owned = true;
-            } else {
-                owned = false;
-            }
-        }
-        return owned;
-    }
 }
-
-
-//GUI_Field field = gui.getFields()[0]; //sætter start placering
-
-
-
-
-
