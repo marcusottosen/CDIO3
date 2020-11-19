@@ -61,8 +61,6 @@ public class Main {
 
 
 
-
-
         //---------------------------------------------------------------------------------------
         //Loop som spillet køres i
         //---------------------------------------------------------------------------------------
@@ -84,6 +82,7 @@ public class Main {
                     kastButton = "";
 
 
+                    System.out.println(player[i].getName());
                     //---------------------------------------------------------------------------------------
                     //Kaster terningen og rykker bilerne rundt på pladen
                     //---------------------------------------------------------------------------------------
@@ -93,9 +92,6 @@ public class Main {
                     gui.setDie(dice);                       // Viser én terning
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
                     System.out.println(location[i]);
-
-
-                    //Logik.boardLoop(player, location, location[i]);
 
 
                     if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
@@ -140,16 +136,19 @@ public class Main {
                     GUI_Field field = gui.getFields()[location[i]];
 
 
+
+
+
                     if (FeltLogik.isStreet(location[i])) {                       //Tjekker om feltet er en vej
                         System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
 
 
-                        if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren.
+                        if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren selv.
                             System.out.println("Du ejer dette felt");
                         }
-                        else if(FeltLogik.isOwned(player,ownable.getOwnerName())){
+                        else if(FeltLogik.isOwned(player,ownable.getOwnerName())){  //Tjekker om vejen er købt af andre spillere
                             System.out.println("Dette felt er allerede købt!");
                         }
 
@@ -165,6 +164,8 @@ public class Main {
                     else{
                         System.out.println("dette er ikke en vej");
                     }
+                    System.out.println("\n" + "\n");
+
                 }
             }
         }

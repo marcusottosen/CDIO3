@@ -16,11 +16,15 @@ public class FeltLogik {
     // hvis vej er ejet retuner true.
     public static boolean isOwned(GUI_Player[] player, String ownerName){
         boolean owned = false;
-        for (int j = 0; j < player.length; j++) {
-            if (ownerName == player[j].getName()) {
+        outer: for (int j = 0; j < player.length; j++) {
+               if (ownerName == player[j].getName()) {
                 owned = true;
-            } else {
+                break outer;
+            } else if (ownerName != player[j].getName()) {
                 owned = false;
+            }
+            else {
+                System.out.println("Error - System kunne ikke finde ejeren af feltet!");
             }
         }
         if (owned)
