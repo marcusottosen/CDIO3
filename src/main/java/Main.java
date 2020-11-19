@@ -130,16 +130,12 @@ public class Main {
                     }
 
                     //---------------------------------------------------------------------------------------
-                    //Køb af felter samt betaling til andre spillere
+                    // Køb af vej samt betaling til andre spillere
                     //---------------------------------------------------------------------------------------
 
                     GUI_Field field = gui.getFields()[location[i]];
 
-
-
-
-
-                    if (FeltLogik.isStreet(location[i])) {                       //Tjekker om feltet er en vej
+                    if (FeltLogik.feltType(location[i]).equals("street")) {                       //Tjekker om feltet er en vej
                         System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
@@ -164,7 +160,21 @@ public class Main {
                     else{
                         System.out.println("dette er ikke en vej");
                     }
-                    System.out.println("\n" + "\n");
+
+
+                    //---------------------------------------------------------------------------------------
+                    //Fængsel
+                    //---------------------------------------------------------------------------------------
+                    if(FeltLogik.feltType(location[i]).equals("goToJail")){
+                        System.out.println("Du blev rykket til fængslet!");
+                        gui.getFields()[location[i]].setCar(player[i], false);
+                        location[i] = 6;
+                        gui.getFields()[location[i]].setCar(player[i], true);
+
+                    }
+
+
+                    System.out.println("\n");
 
                 }
             }

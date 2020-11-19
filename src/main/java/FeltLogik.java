@@ -2,7 +2,7 @@ import gui_fields.GUI_Player;
 
 public class FeltLogik {
     //Tjekker hvorvidt feltet er en vej (købbar)
-    public static boolean isStreet(int a){
+    /*public static boolean isStreet(int a){
         if ((Felter.gameBoard[a].getSubText().equals("1"))  ||
                 (Felter.gameBoard[a].getSubText().equals("2")) ||
                 (Felter.gameBoard[a].getSubText().equals("3")) ||
@@ -10,6 +10,29 @@ public class FeltLogik {
             return true;
         }
         else return false;
+    }*/
+
+    //Finder vejens type vha. feltets subText
+    public static String feltType(int a){
+        String feltType ="";
+        if ((Felter.gameBoard[a].getSubText().equals("1"))  ||
+                (Felter.gameBoard[a].getSubText().equals("2")) ||
+                (Felter.gameBoard[a].getSubText().equals("3")) ||
+                (Felter.gameBoard[a].getSubText().equals("4"))){
+            feltType="street";
+        }
+        else if (Felter.gameBoard[a].getSubText().equals("Fængsel")){
+            feltType="jail";
+        }
+        else if (Felter.gameBoard[a].getSubText().equals("Gratis parkering")){
+            feltType="parkering";
+        }
+        else if (Felter.gameBoard[a].getSubText().equals("Gå i fængsel")){
+            feltType="goToJail";
+        } else{
+            System.out.println("error - System kunne ikke finde feltets type!");
+        }
+        return feltType;
     }
 
     //Tjekker om vejen allerede er ejet af en anden spiller eller ej
