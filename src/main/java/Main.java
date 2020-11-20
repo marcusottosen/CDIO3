@@ -81,6 +81,7 @@ public class Main {
                     if (isJailed[i]){
                         if (RunChanceKort.getOutOfJail[i]) {    //Hvis spilleren har "get out of jail" chancekortet, tages han ud af fængslet
                             isJailed[i] = false;
+                            RunChanceKort.getOutOfJail[i] = false;
                         }
                         else{
                             isJailed[i] = false;
