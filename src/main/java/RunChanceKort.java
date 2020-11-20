@@ -4,10 +4,7 @@ import java.awt.*; //Import af farverne
 
 public class RunChanceKort{
 
-    //private static int[] location = Main.location;
-    //private static GUI_Player[] player = Main.player;
-    //private static int currentPlayer = Main.currentPlayer;
-
+    //Oprettet 2 metoder til når en bil skal rykke sig på felterne. Første metode fjerner den gamle bil og den næste metode tilføjer en ny.
     private static void removeCar() {
         Main.gui.getFields()[Main.location[Main.currentPlayer]].setCar(Main.player[Main.currentPlayer], false);          //Fjerner den tidligere bil
     }
@@ -16,7 +13,7 @@ public class RunChanceKort{
     }
 
 
-    public static void kort1() {
+    public static void kort1() { //Giv skibet til bilen
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 1");
     }
@@ -31,18 +28,40 @@ public class RunChanceKort{
     public static void kort3() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 3");
+        String chosenElement = Main.gui.getUserSelection(
+                "Vælg hvor mange felter du ønsker at rykke",
+                "1", "2", "3", "4", "5"
+        );
+        removeCar();
+        Main.location[Main.currentPlayer] = Main.location[Main.currentPlayer] + Integer.parseInt(chosenElement);
+        addCar();
     }
     public static void kort4() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 4");
-
+        String chosenElement = Main.gui.getUserSelection(
+                "Hvilket felt ønsker du at rykke frem til?",
+                "4", "5"
+        );
+        removeCar();
+        Main.location[Main.currentPlayer] = Integer.parseInt(chosenElement);
+        addCar();
     }
     public static void kort5() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 5");
+        String chosenElement = Main.gui.getUserSelection(
+                "Ryk 1 felt frem eller tag et chancekort mere",
+                "Ryk frem", "tag nyt chancekort"
+        );
+        if (chosenElement == "Ryk frem") {
+            removeCar();Main.location[Main.currentPlayer]++;addCar();
+        } else {
+            ChanceKort.pickChanceKort();
+        }
 
     }
-    public static void kort6() {
+    public static void kort6() { //Giv dette kort til skibet
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 6");
 
@@ -50,17 +69,23 @@ public class RunChanceKort{
     public static void kort7() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 7");
-
+        Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance()-2);
     }
     public static void kort8() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 8");
-
+        String chosenElement = Main.gui.getUserSelection(
+                "Vælg hvilket fælt du ønsker at rykke frem til?",
+                "4", "5", "7", "8"
+        );
+        removeCar();
+        Main.location[Main.currentPlayer] = Integer.parseInt(chosenElement);
+        addCar();
     }
     public static void kort9() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 9");
-
+        
     }
     public static void kort10() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
@@ -72,12 +97,12 @@ public class RunChanceKort{
         System.out.println("Du fik chancekort 11");
 
     }
-    public static void kort12() {
+    public static void kort12() { //Giv dette kort til katten
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 12");
 
     }
-    public static void kort13() {
+    public static void kort13() { //Giv dette kort til hunden
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 13");
 

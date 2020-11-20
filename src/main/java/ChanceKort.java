@@ -1,22 +1,26 @@
 public class ChanceKort {
-    private final int MAX = 24; //Maksimum antal kort.
+    private final static int MAX = 24; //Maksimum antal kort.
 
-    private int pickedChanceKort; //Det valgte chancekort
+    private static int pickedChanceKort; //Det valgte chancekort
 
 
     public ChanceKort() {
-        pickedChanceKort = 1;
+        pickedChanceKort = 0;
         }
 
-    public int randomChanceKort(){
-        pickedChanceKort = (int)(Math.random()*MAX)+1;
+
+    //Metode til at teste om den vælger et tilfældigt kort
+    public static int randomChanceKort(){
+        int pickedChanceKort = (int) ((Math.random()*MAX)+1);
 
         return pickedChanceKort;
     }
 
         //Her opretter vi en switch statement for at gå igennem alle 24 kort.
     //Vi får samtidig variablen "pickedChanceKort" til at give et tilfældigt tal
-    public void pickChanceKort() {
+    public static void pickChanceKort() {
+        //Find et tilfældigt kort
+        int pickedChanceKort = (int) ((Math.random()*MAX)+1);
         switch (pickedChanceKort) {
             case 1:
                 RunChanceKort.kort1();
