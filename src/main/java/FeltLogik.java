@@ -1,6 +1,8 @@
 import gui_fields.GUI_Player;
+import gui_main.GUI;
 
-public class FeltLogik {
+
+public class FeltLogik extends Main{
 
 
 
@@ -61,5 +63,36 @@ public class FeltLogik {
         }
         return nr;
     }
+
+
+    //Flytter spilleren på boarded og giver 2 penge over start
+    public static void movePlayer(int i, int[] location, GUI_Player[] player, GUI gui) {
+        gui.getFields()[location[i]].setCar(player[i], false);               //Fjerner den tidligere bil
+        location[i] = location[i] + Main.dice;                                           //Spillerens lokation + terningens værdi
+
+        if (location[i] <= 23) {}                                                   // Gør det muligt for bilen at køre pladen rundt
+        else if (location[i]==23){
+            location[i]=0;
+            player[i].setBalance(player[i].getBalance()+2);                         //Giver 2 penge over start
+        }
+        else{
+            location[i] = location[i]-24;
+            player[i].setBalance(player[i].getBalance()+2);                         //Giver 2 penge over start
+        }
+        gui.getFields()[location[i]].setCar(player[i], true);               //Viser bilens nye position
+    }
+
+    public static void jail(GUI gui, int[] locations, GUI_Player[] player, int i){
+        gui.showMessage("Du er blevet rykket til fængslet! Åhh nej!" + "\n" +
+                "Så bliver du nødt til at vente en hel tur... Ved mindre du har det rette chancekort");
+
+        gui.getFields()[location[i]].setCar(player[i], false);
+        location[i] = 6;
+        gui.getFields()[location[i]].setCar(player[i], true);
+
+        isJailed[i]=true;
+
+    }
+
 
 }

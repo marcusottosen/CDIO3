@@ -49,5 +49,7 @@ public class Spiller {
         }
         return spillerNavne;
     }
+
+
 }
 

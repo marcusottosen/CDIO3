@@ -1,24 +1,10 @@
+import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Player;
+import gui_main.GUI;
+import gui_fields.*;
+
 
 public class Logik extends Main {
-
-    public static int startKonto;
-
-    public static void boardLoop(GUI_Player[] player, int[] location, int i){
-        if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
-        else if (location[i]==23){
-            location[i]=0;
-            player[i].setBalance(player[i].getBalance()+2);     //Giver 2 penge over start
-        }
-        else{
-            location[i] = location[i]-24;
-            player[i].setBalance(player[i].getBalance()+2);     //Giver 2 penge over start
-        }
-
-        //gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
-
-    }
-
 
     public static String findTaber(GUI_Player[] player){
         int nr = 0;
@@ -61,4 +47,21 @@ public class Logik extends Main {
 
         return 10;
     }
+
+
+    public static void p2pBetaling(int i, GUI_Player[] player, GUI gui, int feltPris, GUI_Ownable ownable){
+        player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
+        player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]   //Tilføjer penge til ejeren af feltet
+                .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
+    }
+
+    public static void buyFelt(int i, GUI_Street street, GUI_Ownable ownable, int feltpris){
+        street.setHouses(1);
+        ownable.setOwnerName(Spiller.spillerNavne[i]);
+        ownable.setBorder(player[i].getPrimaryColor());
+        player[i].setBalance(player[i].getBalance() - feltpris);
+    }
+
+
+
 }
