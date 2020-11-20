@@ -17,6 +17,10 @@ public class RunChanceKort{
     public static void kort1() { //Giv skibet til bilen
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 1");
+        Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance() + Main.antalSpillere);
+        for (int i = 0; i < Main.antalSpillere; i++) {
+            Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance() - 1);
+        }
     }
     public static void kort2() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
@@ -96,7 +100,7 @@ public class RunChanceKort{
         addCar();
         
     }
-    public static void kort10() {
+    /*public static void kort10() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 10");
         getOutOfJail[Main.currentPlayer] = true;
@@ -170,7 +174,7 @@ public class RunChanceKort{
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 24");
 
-    }
+    }*/
 
 
 }
