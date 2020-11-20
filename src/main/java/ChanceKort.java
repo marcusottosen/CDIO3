@@ -1,5 +1,5 @@
 public class ChanceKort {
-    private final static int MAX = 24; //Maksimum antal kort.
+    private final static int MAX = 10; //Maksimum antal kort.
 
     private static int pickedChanceKort; //Det valgte chancekort
 
@@ -52,7 +52,7 @@ public class ChanceKort {
             case 10:
                 RunChanceKort.kort10();
                 break;
-            case 11:
+            /*case 11:
                 RunChanceKort.kort11();
                 break;
             case 12:
@@ -93,7 +93,7 @@ public class ChanceKort {
                 break;
             case 24:
                 RunChanceKort.kort24();
-                break;
+                break;*/
 
             default:
                 System.out.println("Chancekortet eksiterer ikke");

@@ -14,8 +14,9 @@ public class RunChanceKort{
     }
 
 
-    public static void kort1() { //Giv skibet til bilen
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+    public static void kort1() {
+        GUI_Chance kort1 = new GUI_Chance("CHANCE", "kort 14", "Det er din fødselsdag! Alle giver dig M1. TILLYKKE MED FØDSELSDAGEN", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort1.getDescription());
         System.out.println("Du fik chancekort 1");
         Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance() + Main.antalSpillere);
         for (int i = 0; i < Main.antalSpillere; i++) {
@@ -23,7 +24,8 @@ public class RunChanceKort{
         }
     }
     public static void kort2() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort2 = new GUI_Chance("CHANCE", "kort 2", "Ryk frem til START. Modtag M2", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort2.getDescription());
         System.out.println("Du fik chancekort 2");
         removeCar();
         Main.location[Main.currentPlayer] = 0;
@@ -31,7 +33,8 @@ public class RunChanceKort{
         addCar();
     }
     public static void kort3() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort3 = new GUI_Chance("CHANCE", "kort 3", "Ryk op til 5 felter frem", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort3.getDescription());
         System.out.println("Du fik chancekort 3");
         String chosenElement = Main.gui.getUserSelection(
                 "Vælg hvor mange felter du ønsker at rykke",
@@ -42,7 +45,8 @@ public class RunChanceKort{
         addCar();
     }
     public static void kort4() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort4 = new GUI_Chance("CHANCE", "kort 4", "Ryk frem til et orange felt.", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort4.getDescription());
         System.out.println("Du fik chancekort 4");
         String chosenElement = Main.gui.getUserSelection(
                 "Hvilket felt ønsker du at rykke frem til?",
@@ -53,7 +57,8 @@ public class RunChanceKort{
         addCar();
     }
     public static void kort5() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort6 = new GUI_Chance("CHANCE", "kort 5", "Ryk 1 felt frem, eller tag et chancekort mere", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort6.getDescription());
         System.out.println("Du fik chancekort 5");
         String chosenElement = Main.gui.getUserSelection(
                 "Ryk 1 felt frem eller tag et chancekort mere",
@@ -64,20 +69,23 @@ public class RunChanceKort{
         } else {
             ChanceKort.pickChanceKort();
         }
-
     }
-    public static void kort6() { //Giv dette kort til skibet
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+    public static void kort6() {
+        GUI_Chance kort6 = new GUI_Chance("CHANCE", "kort 11", "Ryk frem til Strandpromenaden.", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort6.getDescription());
         System.out.println("Du fik chancekort 6");
-
+        removeCar();
+        Main.location[Main.currentPlayer] = 23;
+        addCar();
     }
     public static void kort7() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort7 = new GUI_Chance("CHANCE", "kort 7", "Du har spist for meget slik. BETAL M2 til banken", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort7.getDescription());
         System.out.println("Du fik chancekort 7");
         Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance()-2);
     }
     public static void kort8() {
-        GUI_Chance kort8 = new GUI_Chance("Title", "subText", "Dette er chancekort 8 yeeehaaaw", Color.white, Color.black);
+        GUI_Chance kort8 = new GUI_Chance("CHANCE", "kort 8", "Ryk frem til et orange eller grønt felt.", Color.white, Color.black);
         Main.gui.displayChanceCard(kort8.getDescription());
         System.out.println("Du fik chancekort 8");
         String chosenElement = Main.gui.getUserSelection(
@@ -89,7 +97,8 @@ public class RunChanceKort{
         addCar();
     }
     public static void kort9() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort9 = new GUI_Chance("CHANCE", "kort 9", "Ryk frem til et lyseblåt felt.", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort9.getDescription());
         System.out.println("Du fik chancekort 9");
         String chosenElement = Main.gui.getUserSelection(
                 "Vælg hvilket fælt du ønsker at rykke frem til?",
@@ -100,11 +109,13 @@ public class RunChanceKort{
         addCar();
         
     }
-    /*public static void kort10() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+    public static void kort10() {
+        GUI_Chance kort10 = new GUI_Chance("CHANCE", "kort 10", "Du løslades uden omkostninger. Behold dette kort, indtil du får brug for det.", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort10.getDescription());
         System.out.println("Du fik chancekort 10");
         getOutOfJail[Main.currentPlayer] = true;
     }
+    /*
     public static void kort11() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 11");
