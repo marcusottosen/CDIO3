@@ -1,35 +1,36 @@
 import gui_fields.GUI_Chance;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
 
 import java.awt.*; //Import af farverne
 
-public class RunChanceKort {
-    int[] location;
-    GUI_Player[] player;
-    int spillersTur;
+public class RunChanceKort{
 
-    public void RunChanceKort(int[] location, GUI_Player[] player, int spillersTur){
-        location = this.location;
-        player = this.player;
-        spillersTur = this.spillersTur;
+    //private static int[] location = Main.location;
+    //private static GUI_Player[] player = Main.player;
+    //private static int currentPlayer = Main.currentPlayer;
+
+    private static void removeCar() {
+        Main.gui.getFields()[Main.location[Main.currentPlayer]].setCar(Main.player[Main.currentPlayer], false);          //Fjerner den tidligere bil
     }
+    private static void addCar() {
+        Main.gui.getFields()[Main.location[Main.currentPlayer]].setCar(Main.player[Main.currentPlayer], true);       //Viser bilens nye position
+    }
+
 
     public static void kort1() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 1");
-
     }
     public static void kort2() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 2");
-
-
+        removeCar();
+        Main.location[Main.currentPlayer] = 0;
+        Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance()+2);
+        addCar();
     }
     public static void kort3() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 3");
-
     }
     public static void kort4() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
