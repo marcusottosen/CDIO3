@@ -1,9 +1,9 @@
 //Dice koden er taget fra CDIO1 opgaven.
 
 public class Dice {
-    private final int MAX = 6; //Maximum værdi
+    private static final int MAX = 6; //Maximum værdi
 
-    private int faceValue; //nuværende værdi
+    private static int faceValue; //nuværende værdi
 
     //Konstruktør
     public Dice() {
@@ -11,7 +11,7 @@ public class Dice {
     }
 
     //kaster terning
-    public int roll() {
+    public static int roll() {
         faceValue =(int)(Math.random()*MAX)+1;
 
         return faceValue;

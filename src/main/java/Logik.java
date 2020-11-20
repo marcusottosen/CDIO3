@@ -20,7 +20,7 @@ public class Logik extends Main {
     }
 
 
-    public static int findTaber(GUI_Player[] player){
+    public static String findTaber(GUI_Player[] player){
         int nr = 0;
         outer: for (int i = 0; i < player.length; i++) {
             if (player[i].getBalance()<=0){
@@ -28,14 +28,14 @@ public class Logik extends Main {
                 break outer;
             }
         }
-        return nr;
+        return player[nr].getName();
     }
 
-    public static int findVinner(GUI_Player[] player) {
+    public static String findVinner(GUI_Player[] player) {
         int max = 0;
         int nr = 0;
         for (int i = 0; i < player.length; i++) {
-            if (player[i].getBalance() < max) {
+            if (player[i].getBalance() > max) {
                 max = player[i].getBalance();
             }
         }
@@ -44,6 +44,6 @@ public class Logik extends Main {
                 nr = i;
         }
 
-        return nr;
+        return player[nr].getName();
     }
 }

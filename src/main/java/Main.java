@@ -89,7 +89,7 @@ public class Main {
                     //---------------------------------------------------------------------------------------
                     gui.getFields()[location[i]].setCar(player[i], false);          //Fjerner den tidligere bil
 
-                    dice = ((int)(Math.random() * 6) + 1);  // Finder en værdi mellem 1-6
+                    dice = Dice.roll();  // Finder en værdi mellem 1-6
                     gui.setDie(dice);                       // Viser én terning
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
                     System.out.println(location[i]);
@@ -188,8 +188,8 @@ public class Main {
         }
         //Når en spiller går falit
         if(falit){
-            gui.showMessage("Spillet er slut! Spiller " + Logik.findTaber(player) + " er gået falit!" + "\n" +
-                    "Spiller " + Logik.findVinner(player) + " havde flest points!");
+            gui.showMessage("Spillet er slut! " + Logik.findTaber(player) + " er gået falit!" + "\n" +
+                    Logik.findVinner(player) + " havde flest points!");
         }
     }
 }
