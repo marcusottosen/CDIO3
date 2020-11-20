@@ -1,4 +1,4 @@
-import com.sun.xml.internal.bind.v2.TODO;
+
 import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -10,8 +10,13 @@ import java.util.Random;
 public class Main {
     private static int antalSpillere;
     private static GUI_Car UFO;
+    public static int spillersTur = 0;
+    public static int[] location;            //Opretter array til spillernes lokation
     //public static GUI_Player[] player;
     //public static GUI_Ownable ownable;
+
+    // Opretter array af spillerobjeckter svarende til antal spillere
+    public static GUI_Player[] player;
 
 /*
       GUI gui = new GUI();
@@ -45,7 +50,7 @@ public class Main {
 
 
         // Opretter array af spillerobjeckter svarende til antal spillere
-        GUI_Player[] player = new GUI_Player[antalSpillere];
+        player = new GUI_Player[antalSpillere];
 
 
 
@@ -57,13 +62,14 @@ public class Main {
             field.setCar(player[i], true);
         }
 
-        int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
-
+        location = new int[antalSpillere];  //Tilføjer lokation på pladen til hver spiller.
 
 
         //---------------------------------------------------------------------------------------
         //Loop som spillet køres i
         //---------------------------------------------------------------------------------------
+
+
 
         outer : while (!falit) {
             for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
@@ -79,6 +85,7 @@ public class Main {
                             " ",
                             "Kast terningen!"
                     );
+                    spillersTur = i;
                     kastButton = "";
 
 
