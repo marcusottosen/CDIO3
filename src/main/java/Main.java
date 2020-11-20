@@ -99,18 +99,13 @@ public class Main {
                     //---------------------------------------------------------------------------------------
                     //Når en spiller lander på et chancekort
                     //---------------------------------------------------------------------------------------
-                    if (location[i] == 3 ||
+                    if (    location[i] == 3 ||
                             location[i] == 9 ||
-                            location[i] == 15 ||
+                            location[i] == 15||
                             location[i] == 21
                     ) {
                         // Der findes et chancekort
-
-
-                        new GUI_Chance("Title", "subText", "description", Color.red, Color.black);
-                        gui.setChanceCard("hello");
-                        gui.displayChanceCard();
-
+                        ChanceKort.pickChanceKort();
                     }
 
                     //---------------------------------------------------------------------------------------
