@@ -1,36 +1,15 @@
 import gui_main.GUI;
-import gui_fields.*;
-import gui_fields.GUI_Player;
 
-import java.awt.*;
 
 
 public class Spiller {
 
     public static String[] spillerNavne;                       //Array af spillernes navne
-    private int konto;
     public static int antalSpillere;
 
 
-    //Konstruktør
-    public Spiller() {
-        konto = Logik.startKonto;
-    }
-
-
-    public int getkonto() {
-        return konto;
-    }
-
-    public void setKonto(int a) {
-        if (konto + a < 0)
-            konto = 0;
-        else
-            konto = konto + a;
-    }
-
-
-    public static int antalSpillere(GUI gui) {                   //Finder antal spillere
+    //Finder antal spillere
+    public static int antalSpillere(GUI gui) {
         String antalSpillerInput = gui.getUserSelection(
                 "Vælg antal spillere",
                 "2", "3", "4"
@@ -39,10 +18,35 @@ public class Spiller {
         return antalSpillere;
     }
 
-    public static String[] setNames(GUI gui) {                  //Finder spillernes navne og sætter dem ind i arrayet
-        spillerNavne = new String[antalSpillere];               //Sætter arrayet til antallet af spillere
+    //Finder spillernes navne og sætter dem ind i arrayet spillerNavne.
+    //Tjekker også om nogle af navnene er de samme og om der er kommet et indput
+    public static String[] setNames(GUI gui) {
+        spillerNavne = new String[antalSpillere];      //Sætter arrayet til antallet af spillere
+
+        //Hvis dette for loop ikke var her, ville der komme errors ved tjek om navnene er ens
         for (int i = 0; i < antalSpillere; i++) {
-            String navnInput = gui.getUserString("Indtast navn på spiller " + (i + 1));
+            spillerNavne[i]="";
+        }
+        String navnInput="";
+
+        for (int i = 0; i < antalSpillere; i++) {
+            navnInput = gui.getUserString("Indtast navnet på spiller " + (i + 1));
+            for (int j = 0; j < antalSpillere; j++) {
+                System.out.println("spillernavn " + j + ": " + spillerNavne[j]);
+                System.out.println("input " + navnInput);
+
+                if(navnInput.equals("")){
+                    navnInput = gui.getUserString("Indtast venligst et navn");
+                }
+
+                //Tjekker om to navne er ens
+                else if (spillerNavne[j].equals(navnInput)){
+                    System.out.println("fyfy");
+                    navnInput = gui.getUserString("Du kan ikke have det samme navn som en anden spiller!" + "\"+" +
+                            "Indtast et nyt navn");
+                }
+            }
+
             spillerNavne[i] = navnInput;
 
         }
