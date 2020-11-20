@@ -1,5 +1,5 @@
 import gui_fields.*;
-
+import gui_resources.*;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.ImageIcon;
@@ -35,7 +35,7 @@ public class Felter {
             new GUI_Street("Skaterparken", "2", "en bar", "1", blue, Color.BLACK),
             new GUI_Street("Swimmingpoolen", "2", "en bar", "1", blue, Color.BLACK),
 
-            new GUI_Refuge("GUI_Field.Image.Ferry4", "Gratis parkering", "Gratis parkering", "Du får lov til at holde her helt gratis!", Color.white, Color.BLACK),
+            new GUI_Refuge("GUI_Field.Image.Ferry4", "Parkering", "Parkering", "Du får lov til at holde her helt gratis!", Color.white, Color.BLACK),
 
             new GUI_Street("Spillehallen", "3", "en bar", "1", lightOrange, Color.BLACK),
             new GUI_Street("Biografen", "3", "en bar", "1", lightOrange, Color.BLACK),
@@ -44,7 +44,7 @@ public class Felter {
             new GUI_Street("Dyrehandlen", "3", "en bar", "1", cyan, Color.BLACK),
 
             //GUI_Field.Image.GoToJail
-            new GUI_Jail("GUI_Field.Image.GoToJail", "Gå i fængsel", "Gå i fængsel",
+            new GUI_Jail("GoToJail.jpg", "Gå i fængsel", "Gå i fængsel",
                     "Du bliver sat i fængsel i 1 runde vedmindre du har et kort til at komme ud!", Color.white, Color.BLACK),
 
             new GUI_Street("Bowlinghallen", "4", "en bar", "1", magenta, Color.BLACK),

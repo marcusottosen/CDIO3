@@ -32,8 +32,6 @@ public class Spiller {
         for (int i = 0; i < antalSpillere; i++) {
             navnInput = gui.getUserString("Indtast navnet på spiller " + (i + 1));
             for (int j = 0; j < antalSpillere; j++) {
-                System.out.println("spillernavn " + j + ": " + spillerNavne[j]);
-                System.out.println("input " + navnInput);
 
                 if(navnInput.equals("")){
                     navnInput = gui.getUserString("Indtast venligst et navn");
@@ -41,7 +39,6 @@ public class Spiller {
 
                 //Tjekker om to navne er ens
                 else if (spillerNavne[j].equals(navnInput)){
-                    System.out.println("fyfy");
                     navnInput = gui.getUserString("Du kan ikke have det samme navn som en anden spiller!" + "\"+" +
                             "Indtast et nyt navn");
                 }
