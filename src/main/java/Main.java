@@ -121,7 +121,6 @@ public class Main {
                             location[i] == 15||
                             location[i] == 21
                     ){
-                        RunChanceKort.kort8();
                         // Der findes et chancekort
 
 
