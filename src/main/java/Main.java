@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Main {
-    private static int antalSpillere;
+    public static int antalSpillere;
     private static GUI_Car UFO;
 
     GUI_Ownable ownable;
@@ -76,8 +76,17 @@ public class Main {
                     currentPlayer = i;
                     kastButton = "";
 
+                    //---------------------------------------------------------------------------------------
+                    //Kaster terningen
+                    //---------------------------------------------------------------------------------------
+                    dice = Dice.roll();  // Finder en værdi mellem 1-6
+                    gui.setDie(dice);                       // Viser én terning
 
+
+
+                    //---------------------------------------------------------------------------------------
                     //Tjekker om spilleren er blevet sat i fængsel
+                    //---------------------------------------------------------------------------------------
                     if (isJailed[i]){
                         if (RunChanceKort.getOutOfJail[i]) {    //Hvis spilleren har "get out of jail" chancekortet, tages han ud af fængslet
                             isJailed[i] = false;
@@ -85,20 +94,17 @@ public class Main {
                         }
                         else{
                             isJailed[i] = false;
-                            break inner;    //Skipper spillerens tur
+                            dice = 0;    //Skipper spillerens tur ved ikke at lade spilleren rykke sig
+                            gui.showMessage("Fordi du er i fængsel gælder dit kast ikke!");
                         }
                     }
 
 
                     //---------------------------------------------------------------------------------------
-                    //Kaster terningen og rykker bilerne rundt på pladen
+                    //Rykker bilerne rundt på pladen
                     //---------------------------------------------------------------------------------------
                     gui.getFields()[location[i]].setCar(player[i], false);          //Fjerner den tidligere bil
-
-                    dice = Dice.roll();  // Finder en værdi mellem 1-6
-                    gui.setDie(dice);                       // Viser én terning
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
-
 
                     if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
                     else if (location[i]==23){
