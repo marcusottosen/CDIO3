@@ -46,4 +46,19 @@ public class Logik extends Main {
 
         return player[nr].getName();
     }
+
+    public static int spillerBalance(){
+        int balance=0;
+        if (antalSpillere==2){
+            balance = 20;
+        }
+        if (antalSpillere==3){
+            balance = 18;
+        }
+        if (antalSpillere==4){
+            balance = 16;
+        }
+
+        return 10;
+    }
 }

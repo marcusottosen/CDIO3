@@ -42,10 +42,9 @@ public class Main {
         // Opretter array af spillerobjeckter svarende til antal spillere
         player = new GUI_Player[antalSpillere];
 
-
         // Tilføjer navn og balance til spillerobjecterne og viser dem visuelt på pladen.
         for (int i = 0; i < antalSpillere; i++) {
-            player[i] = new GUI_Player(Spiller.spillerNavne[i], 20);
+            player[i] = new GUI_Player(Spiller.spillerNavne[i], Logik.spillerBalance());
             gui.addPlayer(player[i]);
             GUI_Field field = gui.getFields()[0];
             field.setCar(player[i], true);
