@@ -72,7 +72,8 @@ public class RunChanceKort{
         Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance()-2);
     }
     public static void kort8() {
-        new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        GUI_Chance kort8 = new GUI_Chance("Title", "subText", "Dette er chancekort 8 yeeehaaaw", Color.white, Color.black);
+        Main.gui.displayChanceCard(kort8.getDescription());
         System.out.println("Du fik chancekort 8");
         String chosenElement = Main.gui.getUserSelection(
                 "Vælg hvilket fælt du ønsker at rykke frem til?",
@@ -85,11 +86,19 @@ public class RunChanceKort{
     public static void kort9() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 9");
+        String chosenElement = Main.gui.getUserSelection(
+                "Vælg hvilket fælt du ønsker at rykke frem til?",
+                "16", "17"
+        );
+        removeCar();
+        Main.location[Main.currentPlayer] = Integer.parseInt(chosenElement);
+        addCar();
         
     }
     public static void kort10() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 10");
+
 
     }
     public static void kort11() {
