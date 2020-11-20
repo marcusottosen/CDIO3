@@ -76,7 +76,7 @@ public class Main {
             for (int i = 0; i < player.length; i++) {       //Skifter mellem spillernes tur
                 if (kastButton != "kast terning!") {
                     kastButton = gui.getUserButtonPressed(    //Knap til kast af terning
-                            " ",
+                            player[i].getName() + " kaster",
                             "Kast terningen!"
                     );
                     currentPlayer = i;
