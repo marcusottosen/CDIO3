@@ -1,17 +1,29 @@
 import gui_fields.GUI_Chance;
+import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*; //Import af farverne
 
 public class RunChanceKort {
+    int[] location;
+    GUI_Player[] player;
+    int spillersTur;
+
+    public void RunChanceKort(int[] location, GUI_Player[] player, int spillersTur){
+        location = this.location;
+        player = this.player;
+        spillersTur = this.spillersTur;
+    }
 
     public static void kort1() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
+        System.out.println("Du fik chancekort 1");
 
     }
     public static void kort2() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 2");
+
 
     }
     public static void kort3() {

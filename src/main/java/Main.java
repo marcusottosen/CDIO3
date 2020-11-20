@@ -1,3 +1,4 @@
+import com.sun.xml.internal.bind.v2.TODO;
 import gui_codebehind.GUI_BoardController;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
@@ -9,16 +10,22 @@ import java.util.Random;
 public class Main {
     private static int antalSpillere;
     private static GUI_Car UFO;
-    GUI_Player[] player;
-    GUI_Ownable ownable;
+    //public static GUI_Player[] player;
+    //public static GUI_Ownable ownable;
 
+/*
+      GUI gui = new GUI();
+      GUI_Player[] player = new GUI_Player[0];
+     int[] location = new int[0];
+      GUI_Field field = gui.getFields()[0];
+      GUI_Ownable ownable = (GUI_Ownable) field;
+*/
 
     public static void main(String[] args) {
         String kastButton = "";
         //boolean falit = false;
         //int[] spillerLocation;
         int dice = 0;
-        int feltPris;
 
         GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
 
@@ -51,6 +58,7 @@ public class Main {
         }
 
         int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
+
 
 
         //---------------------------------------------------------------------------------------
@@ -126,22 +134,18 @@ public class Main {
                     //---------------------------------------------------------------------------------------
 
                     GUI_Field field = gui.getFields()[location[i]];
+
                     if (FeltLogik.feltType(location[i]).equals("street")) {                       //Tjekker om feltet er en vej
                         System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
-                        feltPris = Integer.parseInt(Felter.gameBoard[location[i]].getSubText());//Finder prisen for feltet og laver det om til int
-
 
 
                         if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren selv.
                             System.out.println("Du ejer dette felt");
                         }
                         else if(FeltLogik.isOwned(player,ownable.getOwnerName())){  //Tjekker om vejen er købt af andre spillere
-                            System.out.println("Dette felt er allerede købt! Betal penge!");
-                            player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
-                            player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]
-                                    .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
+                            System.out.println("Dette felt er allerede købt!");
                         }
 
                         else {
@@ -149,8 +153,9 @@ public class Main {
                             street.setHouses(1);
                             ownable.setOwnerName(Spiller.spillerNavne[i]);
                             ownable.setBorder(player[i].getPrimaryColor());
-                            player[i].setBalance(player[i].getBalance() - feltPris);
+                            player[i].setBalance(player[i].getBalance()-2);
                         }
+                        player[i].setBalance(player[i].getBalance() + 1);
                     }
                     else{
                         System.out.println("dette er ikke en vej");
@@ -171,16 +176,8 @@ public class Main {
 
                     System.out.println("\n");
 
-
                 }
-
-
             }
-        }
-        //Når en spiller går falit
-        if(falit){
-            gui.showMessage("Spillet er slut! Spiller " + Logik.findTaber(player) + " er gået falit!" + "\n" +
-                    "Spiller " + Logik.findVinner(player) + " havde flest points");
         }
     }
 }
