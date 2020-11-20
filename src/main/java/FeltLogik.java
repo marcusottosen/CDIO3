@@ -3,6 +3,7 @@ import gui_fields.GUI_Player;
 public class FeltLogik {
 
 
+
     //Finder vejens type vha. feltets subText
     public static String feltType(int a){
         String feltType ="";

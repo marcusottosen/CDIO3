@@ -14,9 +14,9 @@ public class Main {
 
     public static int currentPlayer;
     public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
-    public static int[] location;  //Opretter array til spillernes lokation
-    public static GUI_Player[] player; // Opretter array af spillerobjeckter svarende til antal spillere
-
+    public static int[] location;       // Opretter array til spillernes lokation
+    public static GUI_Player[] player;  // Opretter array af spillerobjeckter svarende til antal spillere
+    public static boolean[] isJailed;   // Opretter array til tjek om den enkelte spiller er i fængsel
 
 
 
@@ -28,13 +28,9 @@ public class Main {
         //int[] spillerLocation;
         int dice = 0;
         int feltPris;
-
-
         boolean falit = false;
 
 
-
-        //Felter.startGame();
         //Spørger brugeren om hvor mange spillere der er
         Spiller.antalSpillere(gui);{
             antalSpillere = Spiller.antalSpillere;
@@ -42,12 +38,9 @@ public class Main {
 
         //Spørger om spillernes navne og sætter dem i et array spillerNavne[]
         Spiller.setNames(gui);
-        //RunChanceKort.kort1(gui);
-
 
         // Opretter array af spillerobjeckter svarende til antal spillere
         player = new GUI_Player[antalSpillere];
-
 
 
         // Tilføjer navn og balance til spillerobjecterne og viser dem visuelt på pladen.
@@ -59,6 +52,7 @@ public class Main {
         }
 
         location = new int[antalSpillere];            //Opretter array til spillernes lokation
+        isJailed = new boolean[antalSpillere];        //Opretter array til at holde styr på hvem der er i fængsel
 
 
         //---------------------------------------------------------------------------------------
@@ -69,13 +63,13 @@ public class Main {
             for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
                 if (player[i].getBalance() <= 0) {
                     falit = true;
-                    break outer;    //Hopper ud af while loopet
+                    break outer;    //Hopper ud af while loopet hvis en spiller er gået falit
                 }
             }
 
-            for (int i = 0; i < player.length; i++) {       //Skifter mellem spillernes tur
+            inner : for (int i = 0; i < player.length; i++) {       //Skifter mellem spillernes tur
                 if (kastButton != "kast terning!") {
-                    kastButton = gui.getUserButtonPressed(    //Knap til kast af terning
+                    kastButton = gui.getUserButtonPressed(          //Knap til kast af terning
                             player[i].getName() + " kaster",
                             "Kast terningen!"
                     );
@@ -83,7 +77,18 @@ public class Main {
                     kastButton = "";
 
 
-                    System.out.println(player[i].getName());
+                    //Tjekker om spilleren er blevet sat i fængsel
+                    if (isJailed[i]){
+                        if (RunChanceKort.getOutOfJail[i]) {    //Hvis spilleren har "get out of jail" chancekortet, tages han ud af fængslet
+                            isJailed[i] = false;
+                        }
+                        else{
+                            isJailed[i] = false;
+                            break inner;    //Skipper spillerens tur
+                        }
+                    }
+
+
                     //---------------------------------------------------------------------------------------
                     //Kaster terningen og rykker bilerne rundt på pladen
                     //---------------------------------------------------------------------------------------
@@ -92,7 +97,6 @@ public class Main {
                     dice = Dice.roll();  // Finder en værdi mellem 1-6
                     gui.setDie(dice);                       // Viser én terning
                     location[i] = location[i] + dice;       //Spillerens lokation + terningens værdi
-                    System.out.println(location[i]);
 
 
                     if (location[i] <= 23) {}   // Gør det muligt for bilen at køre pladen rundt
@@ -106,10 +110,6 @@ public class Main {
                     }
 
                     gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
-
-
-                    //Felter.gameBoard.setHouses(1);
-
 
 
 
@@ -140,7 +140,7 @@ public class Main {
                         System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
-                        feltPris = Integer.parseInt(Felter.gameBoard[location[i]].getSubText());//Finder prisen for feltet og laver det om til int
+                        feltPris = Integer.parseInt(Felter.gameBoard[location[i]].getSubText()); //Finder prisen for feltet og laver det om til int
 
 
 
@@ -150,12 +150,11 @@ public class Main {
                         else if(FeltLogik.isOwned(player,ownable.getOwnerName())){  //Tjekker om vejen er købt af andre spillere
                             System.out.println("Dette felt er allerede købt! Betal penge!");
                             player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
-                            player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]
+                            player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]   //Tilføjer penge til ejeren af feltet
                                     .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
                         }
 
-                        else {
-                            System.out.println("Køb feltet");
+                        else {  //Feltet købes af spilleren
                             street.setHouses(1);
                             ownable.setOwnerName(Spiller.spillerNavne[i]);
                             ownable.setBorder(player[i].getPrimaryColor());
@@ -168,23 +167,21 @@ public class Main {
 
 
                     //---------------------------------------------------------------------------------------
-                    //Fængsel
+                    // Fængsel
                     //---------------------------------------------------------------------------------------
                     if(FeltLogik.feltType(location[i]).equals("goToJail")){
                         System.out.println("Du blev rykket til fængslet!");
+
                         gui.getFields()[location[i]].setCar(player[i], false);
                         location[i] = 6;
                         gui.getFields()[location[i]].setCar(player[i], true);
 
+                        isJailed[i]=true;
+
                     }
-
-
                     System.out.println("\n");
 
-
                 }
-
-
             }
         }
         //Når en spiller går falit
