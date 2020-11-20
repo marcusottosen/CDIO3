@@ -9,8 +9,17 @@ import java.util.Random;
 public class Main {
     private static int antalSpillere;
     private static GUI_Car UFO;
-    GUI_Player[] player;
+
     GUI_Ownable ownable;
+
+    public static int currentPlayer;
+    public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
+    public static int[] location;  //Opretter array til spillernes lokation
+    public static GUI_Player[] player; // Opretter array af spillerobjeckter svarende til antal spillere
+
+
+
+
 
 
     public static void main(String[] args) {
@@ -20,7 +29,6 @@ public class Main {
         int dice = 0;
         int feltPris;
 
-        GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
 
         boolean falit = false;
 
@@ -38,7 +46,7 @@ public class Main {
 
 
         // Opretter array af spillerobjeckter svarende til antal spillere
-        GUI_Player[] player = new GUI_Player[antalSpillere];
+        player = new GUI_Player[antalSpillere];
 
 
 
@@ -50,7 +58,7 @@ public class Main {
             field.setCar(player[i], true);
         }
 
-        int[] location = new int[antalSpillere];            //Opretter array til spillernes lokation
+        location = new int[antalSpillere];            //Opretter array til spillernes lokation
 
 
         //---------------------------------------------------------------------------------------
@@ -71,6 +79,7 @@ public class Main {
                             " ",
                             "Kast terningen!"
                     );
+                    currentPlayer = i;
                     kastButton = "";
 
 
