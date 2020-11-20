@@ -6,6 +6,11 @@ import gui_fields.*;
 
 public class Logik extends Main {
 
+    /**
+     *
+     * @param player
+     * @return
+     */
     public static String findTaber(GUI_Player[] player){
         int nr = 0;
         outer: for (int i = 0; i < player.length; i++) {
@@ -17,6 +22,12 @@ public class Logik extends Main {
         return player[nr].getName();
     }
 
+
+    /**
+     *
+     * @param player
+     * @return
+     */
     public static String findVinner(GUI_Player[] player) {
         int max = 0;
         int nr = 0;
@@ -33,6 +44,10 @@ public class Logik extends Main {
         return player[nr].getName();
     }
 
+    /**
+     *
+     * @return
+     */
     public static int spillerBalance(){
         int balance=0;
         if (antalSpillere==2){
@@ -48,13 +63,26 @@ public class Logik extends Main {
         return 10;
     }
 
-
-    public static void p2pBetaling(int i, GUI_Player[] player, GUI gui, int feltPris, GUI_Ownable ownable){
+    /**
+     *
+     * @param i
+     * @param player
+     * @param feltPris
+     * @param ownable
+     */
+    public static void p2pBetaling(int i, GUI_Player[] player, int feltPris, GUI_Ownable ownable){
         player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
         player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]   //Tilføjer penge til ejeren af feltet
                 .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
     }
 
+    /**
+     *
+     * @param i
+     * @param street
+     * @param ownable
+     * @param feltpris
+     */
     public static void buyFelt(int i, GUI_Street street, GUI_Ownable ownable, int feltpris){
         street.setHouses(1);
         ownable.setOwnerName(Spiller.spillerNavne[i]);

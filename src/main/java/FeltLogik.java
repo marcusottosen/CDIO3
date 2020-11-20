@@ -5,8 +5,11 @@ import gui_main.GUI;
 public class FeltLogik extends Main{
 
 
-
-    //Finder vejens type vha. feltets subText
+    /**
+     * Finder vejens type vha. feltets subText
+     * @param a
+     * @return
+     */
     public static String feltType(int a){
         String feltType ="";
         if ((Felter.gameBoard[a].getSubText().equals("1"))  ||
@@ -32,8 +35,13 @@ public class FeltLogik extends Main{
         return feltType;
     }
 
-    //Tjekker om vejen allerede er ejet af en anden spiller eller ej
-    // hvis vej er ejet retuner true.
+    /**
+     * Tjekker om vejen allerede er ejet af en anden spiller eller ej
+     * Hvis vej er ejet retuner true.
+     * @param player
+     * @param ownerName
+     * @return
+     */
     public static boolean isOwned(GUI_Player[] player, String ownerName){
         boolean owned = false;
         outer: for (int j = 0; j < player.length; j++) {
@@ -53,6 +61,12 @@ public class FeltLogik extends Main{
             return false;
     }
 
+    /**
+     *
+     * @param player
+     * @param ownerName
+     * @return
+     */
     public static int ownerNumber(GUI_Player[] player, String ownerName){
         int nr=0;
         outer: for (int i = 0; i < player.length; i++) {
@@ -65,7 +79,13 @@ public class FeltLogik extends Main{
     }
 
 
-    //Flytter spilleren på boarded og giver 2 penge over start
+    /**
+     * Flytter spilleren på boarded og giver 2 penge over start
+     * @param i
+     * @param location
+     * @param player
+     * @param gui
+     */
     public static void movePlayer(int i, int[] location, GUI_Player[] player, GUI gui) {
         gui.getFields()[location[i]].setCar(player[i], false);               //Fjerner den tidligere bil
         location[i] = location[i] + Main.dice;                                           //Spillerens lokation + terningens værdi
@@ -82,6 +102,13 @@ public class FeltLogik extends Main{
         gui.getFields()[location[i]].setCar(player[i], true);               //Viser bilens nye position
     }
 
+    /**
+     *
+     * @param gui
+     * @param locations
+     * @param player
+     * @param i
+     */
     public static void jail(GUI gui, int[] locations, GUI_Player[] player, int i){
         gui.showMessage("Du er blevet rykket til fængslet! Åhh nej!" + "\n" +
                 "Så bliver du nødt til at vente en hel tur... Ved mindre du har det rette chancekort");
@@ -93,6 +120,4 @@ public class FeltLogik extends Main{
         isJailed[i]=true;
 
     }
-
-
 }

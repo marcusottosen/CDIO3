@@ -8,7 +8,13 @@ public class Spiller {
     public static int antalSpillere;
 
 
-    //Finder antal spillere
+
+
+    /**
+     * Finder antal spillere
+     * @param gui
+     * @return
+     */
     public static int antalSpillere(GUI gui) {
         String antalSpillerInput = gui.getUserSelection(
                 "Vælg antal spillere",
@@ -18,8 +24,14 @@ public class Spiller {
         return antalSpillere;
     }
 
-    //Finder spillernes navne og sætter dem ind i arrayet spillerNavne.
-    //Tjekker også om nogle af navnene er de samme og om der er kommet et indput
+
+
+    /**
+     * Finder spillernes navne og sætter dem ind i arrayet spillerNavne.
+     * Tjekker også om nogle af navnene er de samme og om der er kommet et indput
+     * @param gui
+     * @return
+     */
     public static String[] setNames(GUI gui) {
         spillerNavne = new String[antalSpillere];      //Sætter arrayet til antallet af spillere
 
@@ -49,7 +61,5 @@ public class Spiller {
         }
         return spillerNavne;
     }
-
-
 }
 

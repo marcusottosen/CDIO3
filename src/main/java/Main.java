@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Main {
     public static int antalSpillere;
-    private static GUI_Car UFO;
 
     public static int currentPlayer;
     public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
@@ -17,8 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         String kastButton = "";
-        //boolean falit = false;
-        //int[] spillerLocation;
 
         int feltPris;
         boolean falit = false;
@@ -54,8 +51,8 @@ public class Main {
 
         outer:
         while (!falit) {
-            for (int i = 0; i < player.length; i++) {   //Tjekker om der er en spiller der er gået falit
-                if (player[i].getBalance() <= 0) {
+            for (GUI_Player gui_player : player) {   //Tjekker om der er en spiller der er gået falit
+                if (gui_player.getBalance() <= 0) {
                     falit = true;
                     break outer;    //Hopper ud af while loopet hvis en spiller er gået falit
                 }
@@ -76,7 +73,6 @@ public class Main {
                     dice = Dice.roll();  // Finder en værdi mellem 1-6
                     gui.setDie(dice);    // Viser én terning
 
-
                     //---------------------------------------------------------------------------------------
                     //Tjekker om spilleren er blevet sat i fængsel
                     //---------------------------------------------------------------------------------------
@@ -91,7 +87,6 @@ public class Main {
                         }
                     }
 
-
                     //Rykker bilerne rundt på pladen
                     FeltLogik.movePlayer(i, location, player, gui);
 
@@ -99,19 +94,19 @@ public class Main {
                     //---------------------------------------------------------------------------------------
                     //Når en spiller lander på et chancekort
                     //---------------------------------------------------------------------------------------
-                    if (    location[i] == 3 ||
+                    if (location[i] == 3 ||
                             location[i] == 9 ||
-                            location[i] == 15||
+                            location[i] == 15 ||
                             location[i] == 21
                     ) {
                         // Der findes et chancekort
                         ChanceKort.pickChanceKort();
                     }
 
+
                     //---------------------------------------------------------------------------------------
                     // Køb af vej samt betaling til andre spillere
                     //---------------------------------------------------------------------------------------
-
                     GUI_Field field = gui.getFields()[location[i]];
                     if (FeltLogik.feltType(location[i]).equals("street")) {                       //Tjekker om feltet er en vej
                         GUI_Ownable ownable = (GUI_Ownable) field;
@@ -122,15 +117,8 @@ public class Main {
                         if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren selv.
                             // Spilleren ejer selv dette felt. Gør intet
                         } else if (FeltLogik.isOwned(player, ownable.getOwnerName())) {  //Tjekker om vejen er købt af andre spillere
-                            //player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
-                            //player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]   //Tilføjer penge til ejeren af feltet
-                            //        .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
-                            Logik.p2pBetaling(i, player, gui, feltPris, ownable);
+                            Logik.p2pBetaling(i, player, feltPris, ownable);
                         } else {  //Feltet købes af spilleren
-                            //street.setHouses(1);
-                            //ownable.setOwnerName(Spiller.spillerNavne[i]);
-                            //ownable.setBorder(player[i].getPrimaryColor());
-                            //player[i].setBalance(player[i].getBalance() - feltPris);
                             Logik.buyFelt(i, street, ownable, feltPris);
                         }
                     } else {
@@ -142,27 +130,16 @@ public class Main {
                     // Fængsel
                     //---------------------------------------------------------------------------------------
                     if (FeltLogik.feltType(location[i]).equals("goToJail")) {
-                        /*gui.showMessage("Du er blevet rykket til fængslet! Åhh nej!" + "\n" +
-                                "Så bliver du nødt til at vente en hel tur... Ved mindre du har det rette chancekort");
-
-                        gui.getFields()[location[i]].setCar(player[i], false);
-                        location[i] = 6;
-                        gui.getFields()[location[i]].setCar(player[i], true);
-
-                        isJailed[i]=true;
-
-                    }
-                    System.out.println("\n");*/
                         FeltLogik.jail(gui, location, player, i);
 
                     }
                 }
             }
-            //Når en spiller går falit slutter spillet og hhv. vinder og taber findes
-            if (falit) {
-                gui.showMessage("Spillet er slut! " + Logik.findTaber(player) + " er gået falit!" + "\n" +
-                        Logik.findVinner(player) + " havde flest points!");
-            }
+        }
+        //Når en spiller går falit slutter spillet og hhv. vinder og taber findes
+        if (falit) {
+            gui.showMessage("Spillet er slut! " + Logik.findTaber(player) + " er gået falit!" + "\n" +
+                    Logik.findVinner(player) + " havde flest points!");
         }
     }
 }
