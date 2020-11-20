@@ -18,4 +18,32 @@ public class Logik extends Main {
         //gui.getFields()[location[i]].setCar(player[i], true);       //Viser bilens nye position
 
     }
+
+
+    public static int findTaber(GUI_Player[] player){
+        int nr = 0;
+        outer: for (int i = 0; i < player.length; i++) {
+            if (player[i].getBalance()<=0){
+                nr=i;
+                break outer;
+            }
+        }
+        return nr;
+    }
+
+    public static int findVinner(GUI_Player[] player) {
+        int max = 0;
+        int nr = 0;
+        for (int i = 0; i < player.length; i++) {
+            if (player[i].getBalance() < max) {
+                max = player[i].getBalance();
+            }
+        }
+        for (int i = 0; i < player.length; i++) {
+            if (player[i].getBalance() == max)
+                nr = i;
+        }
+
+        return nr;
+    }
 }

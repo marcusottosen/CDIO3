@@ -1,16 +1,7 @@
 import gui_fields.GUI_Player;
 
 public class FeltLogik {
-    //Tjekker hvorvidt feltet er en vej (købbar)
-    /*public static boolean isStreet(int a){
-        if ((Felter.gameBoard[a].getSubText().equals("1"))  ||
-                (Felter.gameBoard[a].getSubText().equals("2")) ||
-                (Felter.gameBoard[a].getSubText().equals("3")) ||
-                (Felter.gameBoard[a].getSubText().equals("4"))){
-            return true;
-        }
-        else return false;
-    }*/
+
 
     //Finder vejens type vha. feltets subText
     public static String feltType(int a){
@@ -55,4 +46,16 @@ public class FeltLogik {
         else
             return false;
     }
+
+    public static int ownerNumber(GUI_Player[] player, String ownerName){
+        int nr=0;
+        outer: for (int i = 0; i < player.length; i++) {
+            if (player[i].getName().equals(ownerName)){
+                nr = player[i].getNumber();
+                break outer;
+            }
+        }
+        return nr;
+    }
+
 }

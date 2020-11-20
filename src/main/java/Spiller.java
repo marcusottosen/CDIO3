@@ -42,7 +42,7 @@ public class Spiller {
     public static String[] setNames(GUI gui) {                  //Finder spillernes navne og sætter dem ind i arrayet
         spillerNavne = new String[antalSpillere];               //Sætter arrayet til antallet af spillere
         for (int i = 0; i < antalSpillere; i++) {
-            String navnInput = gui.getUserString("Indtast navn på spiller " + (i + 2));
+            String navnInput = gui.getUserString("Indtast navn på spiller " + (i + 1));
             spillerNavne[i] = navnInput;
 
         }
