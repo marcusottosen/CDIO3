@@ -3,7 +3,7 @@ import gui_fields.GUI_Chance;
 import java.awt.*; //Import af farverne
 
 public class RunChanceKort{
-    public static boolean[] getOutOfJail;
+    public static boolean[] getOutOfJail = new boolean[Main.antalSpillere];
 
     //Oprettet 2 metoder til når en bil skal rykke sig på felterne. Første metode fjerner den gamle bil og den næste metode tilføjer en ny.
     private static void removeCar() {
@@ -99,10 +99,7 @@ public class RunChanceKort{
     public static void kort10() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
         System.out.println("Du fik chancekort 10");
-        getOutOfJail = new boolean[Main.currentPlayer];
         getOutOfJail[Main.currentPlayer] = true;
-
-
     }
     public static void kort11() {
         new GUI_Chance("Title", "subText", "description", Color.white, Color.black);
