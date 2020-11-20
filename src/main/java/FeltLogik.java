@@ -18,6 +18,9 @@ public class FeltLogik {
         else if (Felter.gameBoard[a].getSubText().equals("Gratis parkering")){
             feltType="parkering";
         }
+        else if (Felter.gameBoard[a].getSubText().equals("?")){
+            feltType="chancekort";
+        }
         else if (Felter.gameBoard[a].getSubText().equals("Gå i fængsel")){
             feltType="goToJail";
         } else{
