@@ -70,7 +70,7 @@ public class Main {
             inner : for (int i = 0; i < player.length; i++) {       //Skifter mellem spillernes tur
                 if (kastButton != "kast terning!") {
                     kastButton = gui.getUserButtonPressed(          //Knap til kast af terning
-                            player[i].getName() + " kaster",
+                            "Det er spiller " + player[i].getName() + "'s tur!" + "\n" + "Kast din terning for at fortsætte spillet",
                             "Kast terningen!"
                     );
                     currentPlayer = i;
@@ -80,7 +80,7 @@ public class Main {
                     //Kaster terningen
                     //---------------------------------------------------------------------------------------
                     dice = Dice.roll();  // Finder en værdi mellem 1-6
-                    gui.setDie(dice);                       // Viser én terning
+                    gui.setDie(dice);    // Viser én terning
 
 
 
@@ -95,7 +95,7 @@ public class Main {
                         else{
                             isJailed[i] = false;
                             dice = 0;    //Skipper spillerens tur ved ikke at lade spilleren rykke sig
-                            gui.showMessage("Fordi du er i fængsel gælder dit kast ikke!");
+                            gui.showMessage("Fordi du er i fængsel, gælder dette kast ikke!");
                         }
                     }
 
@@ -143,7 +143,6 @@ public class Main {
 
                     GUI_Field field = gui.getFields()[location[i]];
                     if (FeltLogik.feltType(location[i]).equals("street")) {                       //Tjekker om feltet er en vej
-                        System.out.println("Dette er en vej");
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
                         feltPris = Integer.parseInt(Felter.gameBoard[location[i]].getSubText()); //Finder prisen for feltet og laver det om til int
@@ -151,10 +150,9 @@ public class Main {
 
 
                         if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren selv.
-                            System.out.println("Du ejer dette felt");
+                            // Spilleren ejer selv dette felt. Gør intet
                         }
                         else if(FeltLogik.isOwned(player,ownable.getOwnerName())){  //Tjekker om vejen er købt af andre spillere
-                            System.out.println("Dette felt er allerede købt! Betal penge!");
                             player[i].setBalance(player[i].getBalance()-feltPris);  //trækker penge fra spillere
                             player[FeltLogik.ownerNumber(player, ownable.getOwnerName())]   //Tilføjer penge til ejeren af feltet
                                     .setBalance(player[FeltLogik.ownerNumber(player, ownable.getOwnerName() )].getBalance()+feltPris);
@@ -176,7 +174,8 @@ public class Main {
                     // Fængsel
                     //---------------------------------------------------------------------------------------
                     if(FeltLogik.feltType(location[i]).equals("goToJail")){
-                        System.out.println("Du blev rykket til fængslet!");
+                        gui.showMessage("Du er blevet rykket til fængslet! Åhh nej!" + "\n" +
+                                "Så bliver du nødt til at vente en hel tur... Ved mindre du har det rette chancekort");
 
                         gui.getFields()[location[i]].setCar(player[i], false);
                         location[i] = 6;
