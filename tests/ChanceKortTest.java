@@ -27,4 +27,9 @@ public class ChanceKortTest {
             fail("Du trak ikke kort 1. det forventede antal gange. Metoden er altså ikke tilfældig");
         }
     }
+
+
+
+
+
 }
