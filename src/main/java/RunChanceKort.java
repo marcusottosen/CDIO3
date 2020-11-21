@@ -1,6 +1,5 @@
 import gui_fields.GUI_Chance;
-
-import java.awt.*; //Import af farverne
+import java.awt.Color; //Import af farverne
 
 public class RunChanceKort{
     public static boolean[] getOutOfJail = new boolean[Main.antalSpillere];
@@ -19,7 +18,7 @@ public class RunChanceKort{
     public static void kort1() {
         GUI_Chance kort1 = new GUI_Chance("CHANCE", "kort 14", "Det er din fødselsdag! Alle giver dig M1. TILLYKKE MED FØDSELSDAGEN", Color.white, Color.black);
         Main.gui.displayChanceCard(kort1.getDescription());
-        System.out.println("Du fik chancekort 1")
+        System.out.println("Du fik chancekort 1");
         //Giv 1 penge til spillere for hver spiller i spillet.
         Main.player[Main.currentPlayer].setBalance(Main.player[Main.currentPlayer].getBalance() + Main.antalSpillere);
         //Træk 1 penge fra alle spillere. Inklusiv den spiller der fik kortet, da han har fået 1 penge ekstra.

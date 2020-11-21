@@ -1,11 +1,12 @@
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Player;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
-import gui_fields.*;
-import java.awt.*;
+import java.awt.Color;
 
 public class Main {
     public static int antalSpillere;
-
     public static int currentPlayer;
     public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
     public static int[] location;       // Opretter array til spillernes lokation
@@ -108,15 +109,15 @@ public class Main {
                     // Køb af vej samt betaling til andre spillere
                     //---------------------------------------------------------------------------------------
                     GUI_Field field = gui.getFields()[location[i]];
-                    if (FeltLogik.feltType(location[i]).equals("street")) {                       //Tjekker om feltet er en vej
+                    if (FeltLogik.feltType(location[i]).equals("street")) {                      //Tjekker om feltet er en vej
                         GUI_Ownable ownable = (GUI_Ownable) field;
                         GUI_Street street = (GUI_Street) field;
                         feltPris = Integer.parseInt(Felter.gameBoard[location[i]].getSubText()); //Finder prisen for feltet og laver det om til int
 
 
-                        if (ownable.getOwnerName() == player[i].getName()) {    // Tjekker om vejen er købt af spilleren selv.
+                        if (ownable.getOwnerName() == player[i].getName()) {                     // Tjekker om vejen er købt af spilleren selv.
                             // Spilleren ejer selv dette felt. Gør intet
-                        } else if (FeltLogik.isOwned(player, ownable.getOwnerName())) {  //Tjekker om vejen er købt af andre spillere
+                        } else if (FeltLogik.isOwned(player, ownable.getOwnerName())) {          //Tjekker om vejen er købt af andre spillere
                             Logik.p2pBetaling(i, player, feltPris, ownable);
                         } else {  //Feltet købes af spilleren
                             Logik.buyFelt(i, street, ownable, feltPris);

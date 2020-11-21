@@ -1,9 +1,7 @@
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
-
 public class FeltLogik extends Main{
-
 
     /**
      * Finder vejens type vha. feltets subText
@@ -79,7 +77,6 @@ public class FeltLogik extends Main{
         return nr;
     }
 
-
     /**
      * Flytter spilleren på boarded og giver 2 penge over start. Tager brug af gui_main.GUI fra biblioteket til fremvisning af spillerens bil.
      * @param i         i henviser til den enkelte spiller i player og location arrayet.
@@ -118,6 +115,5 @@ public class FeltLogik extends Main{
         gui.getFields()[location[i]].setCar(player[i], true);
 
         isJailed[i]=true;
-
     }
 }

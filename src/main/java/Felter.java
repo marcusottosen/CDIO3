@@ -1,9 +1,11 @@
-import gui_fields.*;
-import gui_resources.*;
-import javax.swing.*;
-import java.awt.*;
+import gui_fields.GUI_Chance;
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Start;
+import gui_fields.GUI_Street;
+import gui_fields.GUI_Jail;
+import gui_fields.GUI_Refuge;
+import java.awt.Color;
 import javax.swing.ImageIcon;
-
 
 public class Felter {
     static Color red = Color.decode("#ff7875");

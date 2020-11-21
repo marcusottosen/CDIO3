@@ -1,9 +1,6 @@
 import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
-import gui_main.GUI;
-//import gui_fields.*;
-
 
 public class Logik extends Main {
 
@@ -23,7 +20,6 @@ public class Logik extends Main {
         return player[nr].getName();
     }
 
-
     /**
      * Finder ud af hvem der har fleste penge, ved at tjekke alle spillerne om deres balance er højere end de andres.
      * @param player    Array af player. Bruges her til at finde den enkelte spillers balance.
@@ -41,7 +37,6 @@ public class Logik extends Main {
             if (player[i].getBalance() == max)
                 nr = i;
         }
-
         return player[nr].getName();
     }
 
@@ -71,7 +66,4 @@ public class Logik extends Main {
         ownable.setBorder(player[i].getPrimaryColor());
         player[i].setBalance(player[i].getBalance() - feltpris);
     }
-
-
-
 }

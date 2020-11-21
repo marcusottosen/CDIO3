@@ -1,10 +1,8 @@
 import gui_main.GUI;
 
 public class Spiller {
-
-    public static String[] spillerNavne;                       //Array af spillernes navne
+    public static String[] spillerNavne; //Array af spillernes navne
     public static int antalSpillere;
-
 
     /**
      * Spørger spillerne om hvis mange spillere de har tænkt sig at være. Mellem 2 og 4.
@@ -16,8 +14,7 @@ public class Spiller {
                 "Vælg antal spillere",
                 "2", "3", "4"
         );
-        antalSpillere = Integer.parseInt(antalSpillerInput);      // Laver string input om til int
-        return antalSpillere;
+        return Integer.parseInt(antalSpillerInput); // Laver string input om til int
     }
 
     /**
@@ -35,7 +32,6 @@ public class Spiller {
         if (antalSpillere==4){
             balance = 16;
         }
-
         return balance;
     }
 
@@ -68,9 +64,7 @@ public class Spiller {
                             "Indtast et nyt navn");
                 }
             }
-
             spillerNavne[i] = navnInput;
-
         }
         return spillerNavne;
     }
