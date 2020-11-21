@@ -10,7 +10,7 @@ public class Dice {
         faceValue = 1;
     }
 
-    //kaster terning
+    //kaster terningen og returnere terningens værdi.
     public static int roll() {
         faceValue =(int)(Math.random()*MAX)+1;
 

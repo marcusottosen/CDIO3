@@ -35,7 +35,7 @@ public class Main {
 
         // Tilføjer navn og balance til spillerobjecterne og viser dem visuelt på pladen.
         for (int i = 0; i < antalSpillere; i++) {
-            player[i] = new GUI_Player(Spiller.spillerNavne[i], Logik.spillerBalance());
+            player[i] = new GUI_Player(Spiller.spillerNavne[i], Spiller.spillerBalance());
             gui.addPlayer(player[i]);
             GUI_Field field = gui.getFields()[0];
             field.setCar(player[i], true);
@@ -130,7 +130,7 @@ public class Main {
                     // Fængsel
                     //---------------------------------------------------------------------------------------
                     if (FeltLogik.feltType(location[i]).equals("goToJail")) {
-                        FeltLogik.jail(gui, location, player, i);
+                        FeltLogik.jail(gui, player, i);
 
                     }
                 }

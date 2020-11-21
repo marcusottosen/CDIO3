@@ -7,8 +7,8 @@ public class FeltLogik extends Main{
 
     /**
      * Finder vejens type vha. feltets subText
-     * @param a
-     * @return
+     * @param a Feltets placering i gameBoard arrayet.
+     * @return  Feltets type i form af en String
      */
     public static String feltType(int a){
         String feltType ="";
@@ -36,11 +36,11 @@ public class FeltLogik extends Main{
     }
 
     /**
-     * Tjekker om vejen allerede er ejet af en anden spiller eller ej
-     * Hvis vej er ejet retuner true.
-     * @param player
-     * @param ownerName
-     * @return
+     * Tjekker om vejen allerede er ejet af en anden spiller eller ej.
+     * Loopet sætter nanvet på ejeren af feltet op imod alle spillernes navne til sammenligning.
+     * @param player    Array af spillerne hentet fra hhv. main og gui_fields.GUI_Player. Bruges her til at finde spillernes navne.
+     * @param ownerName Ejeren af feltets navn. Hentet fra main ved brug af ownable fra biblioteket.
+     * @return          Hvis feltet er ejet af en spiller, returner true. Ellers retuner false.
      */
     public static boolean isOwned(GUI_Player[] player, String ownerName){
         boolean owned = false;
@@ -62,10 +62,11 @@ public class FeltLogik extends Main{
     }
 
     /**
-     *
-     * @param player
-     * @param ownerName
-     * @return
+     * Finder ud af hvilket nr. i player arrayet spillernes navn hører til.
+     *  Det gør ved vha. et loop som sammenligner spillernes navne og ejeren af feltet og returnerer variablen i som svarer til spillerobjektet i arrayet.
+     * @param player    Array af spillerne hentet fra hhv. main og gui_fields.GUI_Player. Bruges her til at finde spillernes navne.
+     * @param ownerName Ejeren af feltets navn. Hentet fra main ved brug af ownable fra biblioteket.
+     * @return          Returnerer spillerens nummer i player arrayet.
      */
     public static int ownerNumber(GUI_Player[] player, String ownerName){
         int nr=0;
@@ -80,11 +81,11 @@ public class FeltLogik extends Main{
 
 
     /**
-     * Flytter spilleren på boarded og giver 2 penge over start
-     * @param i
-     * @param location
-     * @param player
-     * @param gui
+     * Flytter spilleren på boarded og giver 2 penge over start. Tager brug af gui_main.GUI fra biblioteket til fremvisning af spillerens bil.
+     * @param i         i henviser til den enkelte spiller i player og location arrayet.
+     * @param location  Den enkelte spillers lokation på gameBoard arrayet.
+     * @param player    Array af player. bruges her til at sætte spillerens balance samt spillerens lokation.
+     * @param gui       Bruges her til hhv. at fjerne og sætte bilen visuelt i GUIen.
      */
     public static void movePlayer(int i, int[] location, GUI_Player[] player, GUI gui) {
         gui.getFields()[location[i]].setCar(player[i], false);               //Fjerner den tidligere bil
@@ -103,13 +104,12 @@ public class FeltLogik extends Main{
     }
 
     /**
-     *
-     * @param gui
-     * @param locations
-     * @param player
-     * @param i
+     * Flytter spilleren til fængslet og viser en besked som informerer spilleren om hvad der er sket.
+     * @param gui       Bruges her til hhv. at fjerne og sætte bilen visuelt i GUIen.
+     * @param player    Array af player. Bruges her kun til at sætte spillerens lokation i GUIen.
+     * @param i         i henviser til den enkelte spiller i player og location arrayet.
      */
-    public static void jail(GUI gui, int[] locations, GUI_Player[] player, int i){
+    public static void jail(GUI gui, GUI_Player[] player, int i){
         gui.showMessage("Du er blevet rykket til fængslet! Åhh nej!" + "\n" +
                 "Så bliver du nødt til at vente en hel tur... Ved mindre du har det rette chancekort");
 
