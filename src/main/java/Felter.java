@@ -33,7 +33,7 @@ public final class Felter {
             new GUI_Jail("GUI_Field.Image.Jail", "Fængsel", "Fængsel", "Tag på besøg i fængslet!", Color.white, Color.BLACK),
 
             new GUI_Street("Museet", "2", "Museet", "2", green, Color.BLACK),
-            new GUI_Street("Biblikoteket", "2", "Biblikoteket", "2", green, Color.BLACK),
+            new GUI_Street("Biblioteket", "2", "Biblioteket", "2", green, Color.BLACK),
             new GUI_Chance("?", "Prøv lykken!", "Træk et kort og håb på det bedste", Color.white, Color.BLACK),
             new GUI_Street("Skaterparken", "2", "Skaterparken", "2", blue, Color.BLACK),
             new GUI_Street("Swimmingpoolen", "2", "Swimmingpoolen", "2", blue, Color.BLACK),
