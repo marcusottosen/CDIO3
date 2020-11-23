@@ -38,7 +38,7 @@ public class Spiller {
     }
 
     /**
-     * Finder spillernes navne og sætter dem ind i arrayet spillerNavne.
+     * Finder spillernes navne og sætter dem ind i arrayet spillerNavne..
      * Tjekker også om nogle af navnene er de samme og om der er kommet et indput
      * @param gui   Importeret igennem gui_main.GUI. Bruges til at få et tekst-input fra brugeren igennem GUIen.
      * @return      returnerer et array af alle spillernes navne. Arrayets index svarer til arrayet af Player i Main.
@@ -71,4 +71,3 @@ public class Spiller {
         return spillerNavne;
     }
 }
-
