@@ -12,17 +12,10 @@ import java.awt.Color; //Import af farverne
 public class Main {
     public static int antalSpillere;
     public static int currentPlayer;
-<<<<<<< HEAD
     public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet
     public static int[] location;       // Opretter array til spillernes lokation
     public static GUI_Player[] player;  // Opretter array af spillerobjeckter svarende til antal spillere
     public static boolean[] isJailed;   // Opretter array til tjek om den enkelte spiller er i fængsel
-=======
-    public static GUI gui = new GUI(Felter.gameBoard, Color.WHITE);   //Opretter selve GUI vinduet.
-    public static int[] location;       // Opretter array til spillernes lokation.
-    public static GUI_Player[] player;  // Opretter array af spillerobjeckter svarende til antal spillere.
-    public static boolean[] isJailed;   // Opretter array til tjek om den enkelte spiller er i fængsel.
->>>>>>> origin/release_branch
     public static int dice = 0;
 
 
