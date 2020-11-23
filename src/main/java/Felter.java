@@ -8,15 +8,15 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 
 
-public class Felter {
-    static Color red = Color.decode("#ff7875");
-    static Color orange = Color.decode("#ff9c6e");
-    static Color yellow = Color.decode("#fff566");
-    static Color green = Color.decode("#95de64");
-    static Color blue = Color.decode("#69c0ff");
-    static Color cyan = Color.decode("#5cdbd3");
-    static Color lightOrange = Color.decode("#ffc069");
-    static Color magenta = Color.decode("#ff85c0");
+public final class Felter {
+    private final static Color red = Color.decode("#ff7875");
+    private final static Color orange = Color.decode("#ff9c6e");
+    private final static Color yellow = Color.decode("#fff566");
+    private final static Color green = Color.decode("#95de64");
+    private final static Color blue = Color.decode("#69c0ff");
+    private final static Color cyan = Color.decode("#5cdbd3");
+    private final static Color lightOrange = Color.decode("#ffc069");
+    private final static Color magenta = Color.decode("#ff85c0");
 
     static ImageIcon icon = new ImageIcon("GUI_Field.Image.Cones");
 
