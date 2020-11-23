@@ -1,6 +1,7 @@
 import gui_fields.GUI_Chance;
 import java.awt.Color; //Import af farverne
 
+
 public class RunChanceKort{
     public static boolean[] getOutOfJail = new boolean[Main.antalSpillere];
 

@@ -1,5 +1,6 @@
 import gui_main.GUI;
 
+
 public class Spiller {
     public static String[] spillerNavne; //Array af spillernes navne
     public static int antalSpillere;
@@ -14,7 +15,8 @@ public class Spiller {
                 "Vælg antal spillere",
                 "2", "3", "4"
         );
-        return Integer.parseInt(antalSpillerInput); // Laver string input om til int
+        antalSpillere = Integer.parseInt(antalSpillerInput);      // Laver string input om til int
+        return antalSpillere;
     }
 
     /**

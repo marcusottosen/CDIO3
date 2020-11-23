@@ -7,6 +7,7 @@ import gui_fields.GUI_Refuge;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+
 public class Felter {
     static Color red = Color.decode("#ff7875");
     static Color orange = Color.decode("#ff9c6e");
