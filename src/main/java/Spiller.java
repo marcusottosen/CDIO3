@@ -60,10 +60,10 @@ public class Spiller {
                     navnInput = gui.getUserString("Indtast venligst et navn");
                 }
 
-                //Tjekker om to navne er ens
-                else if (spillerNavne[j].equals(navnInput)){
-                    navnInput = gui.getUserString("Du kan ikke have det samme navn som en anden spiller!" + "\"+" +
-                            "Indtast et nyt navn");
+                //Tjekker om to navne er ens og navnlængde
+                else if ((spillerNavne[j].equals(navnInput)) || (navnInput.length() > 8 )) {
+                    navnInput = gui.getUserString("Navnet skal være under 8 tegn, og må ikke er identisk med en anden spillers!" +
+                            "\nIndtast et nyt navn");
                 }
             }
             spillerNavne[i] = navnInput;
