@@ -4,6 +4,10 @@ import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import java.awt.Color;
+import gui_codebehind.*;
+import gui_fields.*;
+import java.awt.Color; //Import af farverne
+
 
 public class Main {
     public static int antalSpillere;

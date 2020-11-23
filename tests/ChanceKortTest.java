@@ -1,7 +1,11 @@
+import java.lang.reflect.Method;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ChanceKortTest {
 
+    
+    //Testen her er lavet på alle 24 kort, derfor fejler den nu, hvor der kun er 10 kort. Testen var en succes, da der var 24 kort. Dette ses også i rapporten.
     @org.junit.Test
     public void ChanceKortIsRandom() {
         int kort;
@@ -28,7 +32,18 @@ public class ChanceKortTest {
         }
     }
 
-
+    @org.junit.Test
+    public void RunChanceKortHas10Cards() throws ClassNotFoundException {
+        //Expected er 12. 10 kort + 2 ekstra metoder, til at fjerne og tilføje biler.
+        int expected = 12;
+        int actual = 0;
+        Class c = Class.forName("RunChanceKort");
+        Method methods[] = c.getDeclaredMethods();
+        for (int i = 0; i < methods.length; i++) {
+            actual++;
+        }
+        assertEquals(expected, actual);
+    }
 
 
 
