@@ -1,5 +1,7 @@
 import gui_main.GUI;
 
+import java.util.Arrays;
+
 
 public class Spiller {
     public static String[] spillerNavne; //Array af spillernes navne
@@ -69,6 +71,11 @@ public class Spiller {
             spillerNavne[i] = navnInput;
         }
         return spillerNavne;
+    }
+
+    @Override
+    public String toString() {
+        return "Antal spillere: " + antalSpillere + "\n" + "Spillernavne: " + Arrays.toString(spillerNavne);
     }
 }
 

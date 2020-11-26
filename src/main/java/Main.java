@@ -7,6 +7,7 @@ import java.awt.Color;
 import gui_codebehind.*;
 import gui_fields.*;
 import java.awt.Color; //Import af farverne
+import java.util.Arrays;
 
 
 public class Main {
@@ -48,6 +49,7 @@ public class Main {
 
         location = new int[antalSpillere];            //Opretter array til spillernes lokation
         isJailed = new boolean[antalSpillere];        //Opretter array til at holde styr på hvem der er i fængsel
+
 
 
         //---------------------------------------------------------------------------------------
@@ -127,7 +129,7 @@ public class Main {
                             Logik.buyFelt(i, street, ownable, feltPris);
                         }
                     } else {
-                        System.out.println("dette er ikke en vej");
+                        System.out.println("Dette er ikke en vej der kan købes");
                     }
 
 

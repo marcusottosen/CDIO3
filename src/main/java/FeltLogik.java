@@ -4,6 +4,7 @@ import gui_main.GUI;
 
 public class FeltLogik extends Main{
 
+
     /**
      * Finder vejens type vha. feltets subText
      * @param a Feltets placering i gameBoard arrayet.
@@ -28,6 +29,8 @@ public class FeltLogik extends Main{
         }
         else if (Felter.gameBoard[a].getSubText().equals("Gå i fængsel")){
             feltType="goToJail";
+        }else if (Felter.gameBoard[a].getTitle().equals("START")){
+            feltType="start";
         } else{
             System.out.println("error - System kunne ikke finde feltets type!");
         }

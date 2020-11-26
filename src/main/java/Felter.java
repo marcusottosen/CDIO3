@@ -5,6 +5,7 @@ import gui_fields.GUI_Street;
 import gui_fields.GUI_Jail;
 import gui_fields.GUI_Refuge;
 import java.awt.Color;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 
@@ -56,4 +57,16 @@ public final class Felter {
             new GUI_Street("Vandlandet", "4", "Vandlandet", "4", yellow, Color.BLACK),
             new GUI_Street("Strandpromenaden", "4", "Strandpromenaden", "4", yellow, Color.BLACK),
     };
+
+    @Override
+    public String toString() {
+        String[] strArr = new String[gameBoard.length];
+        for (int i = 0; i < gameBoard.length; i++) {
+            strArr[i]=("\n ******* Felt " + i + "*******" +
+                    "title: " + gameBoard[i].getTitle() +
+                    "\n subText: " + gameBoard[i].getSubText() +
+                    "\n description: " + gameBoard[i].getDescription());
+        }
+        return Arrays.toString(strArr);
+    }
 }
