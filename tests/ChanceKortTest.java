@@ -13,7 +13,7 @@ public class ChanceKortTest {
 
         ChanceKort kortTest = new ChanceKort();
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1000000; i++) { //Køres 1. mil gange
             kort = kortTest.randomChanceKort();
 
             //Det antages at ud af 24 kort er chancen for at trække kort 1. = 1/24
